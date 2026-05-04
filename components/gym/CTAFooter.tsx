@@ -84,7 +84,7 @@ export default function CTAFooter() {
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             </div>
 
-            <div className="absolute -bottom-8 -right-4 md:right-8 glass border border-card-border p-6 rounded-2xl max-w-xs shadow-2xl backdrop-blur-md">
+            <div className="absolute -bottom-8 right-0 md:right-8 glass border border-card-border p-6 rounded-2xl max-w-xs shadow-2xl backdrop-blur-md">
               <Quote className="w-8 h-8 text-accent mb-4" />
               <p className="text-foreground text-lg font-medium leading-relaxed italic">
                 &ldquo;The only bad workout is the one that <span className="text-accent italic font-bold">didn&apos;t happen.</span>&rdquo;

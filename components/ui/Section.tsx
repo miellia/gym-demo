@@ -21,7 +21,7 @@ export default function Section({
   const bgClass = variant === "subtle" ? "bg-foreground/[0.02]" : "bg-transparent";
 
   return (
-    <section id={id} className={`relative ${className} ${bgClass} transition-colors duration-500`}>
+    <section id={id} className={`relative ${className} ${bgClass} transition-colors duration-500 overflow-hidden`}>
       {showDivider && (
         <div className="absolute top-0 left-0 w-full flex justify-center px-6 lg:px-12 pointer-events-none">
           <div className="w-full h-px bg-gradient-to-r from-transparent via-card-border/60 to-transparent" />

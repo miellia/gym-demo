@@ -113,7 +113,7 @@ export default function Testimonials() {
           {/* Navigation Arrows */}
           <button 
             onClick={prev}
-            className="absolute -left-4 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
+            className="absolute left-0 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -153,7 +153,7 @@ export default function Testimonials() {
 
           <button 
             onClick={next}
-            className="absolute -right-4 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
+            className="absolute right-0 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5" />

@@ -115,7 +115,8 @@ export default function SuccessStories() {
 
   return (
     <Section id="results" showDivider>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-[800px] h-full md:h-[800px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
+      {/* Background Decorative Glow - contained on mobile */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-accent/5 blur-[80px] md:blur-[150px] rounded-full pointer-events-none" />
 
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
         

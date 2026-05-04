@@ -110,41 +110,48 @@ export default function Hero() {
       </nav>
 
       {/* Sidebar Overlay */}
-      {isMobileMenuOpen && (
-        <div 
-          className={`fixed inset-0 top-0 left-0 w-full h-screen z-[9999] bg-background/95 backdrop-blur-md flex flex-col transition-all duration-300 ease-in-out ${
-            isClosing ? '-translate-x-full opacity-0' : 'translate-x-0 opacity-100'
-          }`}
-        >
-          <div className="absolute top-5 right-6 z-[10000] flex items-center gap-4">
-            <ThemeToggle />
-            <button 
-              onClick={toggleMobileMenu} 
-              className="text-foreground p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
-            >
-              <Menu className="w-8 h-8" />
-            </button>
-          </div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 w-full h-screen z-[9999] bg-background flex flex-col"
+          >
+            <div className="absolute top-5 right-6 z-[10000] flex items-center gap-4">
+              <ThemeToggle />
+              <button 
+                onClick={toggleMobileMenu} 
+                className="text-foreground p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
+              >
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
 
-          <div className="flex-1 overflow-y-auto px-10 py-24 flex flex-col gap-8 scrollbar-hide">
-            <a href="#home" onClick={toggleMobileMenu} className="text-foreground text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">HOME</a>
-            <a href="#about" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">ABOUT</a>
-            <a href="#trainers" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">TRAINERS</a>
-            <a href="#programs" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">PROGRAMS</a>
-            <a href="#pricing" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">PRICING</a>
-            <a href="#contact" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">CONTACT</a>
-            <button 
-              onClick={() => {
-                toggleMobileMenu();
-                setIsModalOpen(true);
-              }}
-              className="mt-8 flex items-center justify-center gap-3 bg-accent text-black px-6 py-5 font-bold rounded-sm text-sm w-full tracking-[0.2em] uppercase shadow-lg"
-            >
-              JOIN NOW <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      )}
+            <div className="flex-1 overflow-y-auto px-10 py-24 flex flex-col gap-8 scrollbar-hide">
+              <a href="#home" onClick={toggleMobileMenu} className="text-foreground text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">HOME</a>
+              <a href="#about" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">ABOUT</a>
+              <a href="#trainers" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">TRAINERS</a>
+              <a href="#programs" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">PROGRAMS</a>
+              <a href="#pricing" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">PRICING</a>
+              <a href="#contact" onClick={toggleMobileMenu} className="text-text-secondary hover:text-foreground transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-card-border pb-4">CONTACT</a>
+              <button 
+                onClick={() => {
+                  toggleMobileMenu();
+                  setIsModalOpen(true);
+                }}
+                className="mt-8 flex items-center justify-center gap-3 bg-accent text-black px-6 py-5 font-bold rounded-sm text-sm w-full tracking-[0.2em] uppercase shadow-lg"
+              >
+                JOIN NOW <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Content */}
       <div className="relative z-20 flex-1 flex flex-col justify-center px-6 lg:px-12 pt-32 lg:pt-40 pb-12 md:pb-0">

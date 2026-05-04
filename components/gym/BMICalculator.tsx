@@ -35,8 +35,8 @@ export default function BMICalculator() {
   return (
     <Section id="calculator" className="bg-foreground/[0.01]" showDivider>
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -mr-64 -mt-64" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -ml-64 -mb-64" />
+      <div className="hidden md:block absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -mr-64 -mt-64" />
+      <div className="hidden md:block absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -ml-64 -mb-64" />
 
       <div className="max-w-2xl mx-auto flex flex-col items-center relative z-10">
         

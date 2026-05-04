@@ -102,7 +102,7 @@ export default function DietPlans() {
       <div className="lg:hidden relative mb-12">
         <button 
           onClick={prev}
-          className="absolute -left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -121,7 +121,7 @@ export default function DietPlans() {
 
         <button 
           onClick={next}
-          className="absolute -right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
