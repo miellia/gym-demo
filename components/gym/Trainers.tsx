@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Dumbbell, Zap, Crown, HeartPulse, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Section from "@/components/ui/Section";
 
 export const trainers = [
   {
@@ -48,7 +49,7 @@ export default function Trainers() {
   };
 
   return (
-    <section className="py-24 bg-background px-6 lg:px-12 max-w-[1400px] mx-auto overflow-hidden">
+    <Section id="trainers" showDivider>
       <div className="text-center mb-16">
         <div className="flex items-center justify-center gap-4 mb-4">
           <div className="w-12 h-px bg-accent/50" />
@@ -69,11 +70,10 @@ export default function Trainers() {
       </div>
 
       {/* Mobile/Tablet Carousel View (< lg) */}
-      <div className="lg:hidden relative px-4">
-        {/* Navigation Arrows - Repositioned on top of cards */}
+      <div className="lg:hidden relative">
         <button 
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+          className="absolute -left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
           aria-label="Previous trainer"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -88,7 +88,7 @@ export default function Trainers() {
 
         <button 
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+          className="absolute -right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
           aria-label="Next trainer"
         >
           <ChevronRight className="w-5 h-5" />
@@ -103,7 +103,7 @@ export default function Trainers() {
           <Users className="w-4 h-4 text-accent" /> VIEW ALL TRAINERS <ArrowRight className="w-4 h-4 text-accent" />
         </a>
       </div>
-    </section>
+    </Section>
   );
 }
 

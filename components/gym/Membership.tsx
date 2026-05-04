@@ -1,9 +1,10 @@
 "use client";
 
-import { CheckCircle2, Dumbbell, Crown, Gem, Calendar, PauseCircle, Users, ArrowRight, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Dumbbell, Crown, Gem, Calendar, PauseCircle, Users, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import JoinModal from "./JoinModal";
+import Section from "@/components/ui/Section";
 
 const plans = [
   {
@@ -60,7 +61,7 @@ export default function Membership() {
   const [activeTab, setActiveTab] = useState(1); // Default to PRO
 
   return (
-    <section className="py-24 bg-background px-6 lg:px-12 max-w-[1400px] mx-auto relative">
+    <Section id="pricing" showDivider>
       <div className="text-center mb-16 relative z-10">
         <div className="flex items-center justify-center gap-4 mb-4">
           <div className="w-12 h-px bg-accent/50" />
@@ -112,7 +113,7 @@ export default function Membership() {
         </AnimatePresence>
       </div>
 
-      {/* Footer Benefits Section - Refactored for Screenshot Layout */}
+      {/* Footer Benefits Section */}
       <div className="bg-card border border-white/5 rounded-2xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
         <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap justify-center lg:justify-start gap-10 md:gap-16 w-full lg:w-auto">
           <div className="flex items-center gap-5">
@@ -160,19 +161,14 @@ export default function Membership() {
         </div>
       </div>
 
-
       <JoinModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </section>
+    </Section>
   );
 }
 
 function MembershipCard({ plan, i, onChoose }: { plan: typeof plans[0], i: number, onChoose: () => void }) {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: i * 0.1 }}
+    <div 
       className={`bg-card rounded-2xl relative flex flex-col ${plan.popular ? 'border-2 border-accent transform lg:-translate-y-4 shadow-[0_0_30px_rgba(0,255,136,0.1)] py-12 px-8' : 'border border-white/5 py-10 px-8'}`}
     >
       {plan.popular && (
@@ -197,7 +193,7 @@ function MembershipCard({ plan, i, onChoose }: { plan: typeof plans[0], i: numbe
         </div>
       </div>
 
-      <ul className="space-y-4 mb-10 flex-1">
+      <ul className="space-y-4 mb-10 flex-1 text-left">
         {plan.features.map((feature, idx) => (
           <li key={idx} className="flex items-start gap-3 text-sm text-text-secondary">
             <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
@@ -212,7 +208,7 @@ function MembershipCard({ plan, i, onChoose }: { plan: typeof plans[0], i: numbe
       >
         CHOOSE PLAN <ArrowRight className="w-4 h-4" />
       </button>
-    </motion.div>
+    </div>
   );
 }
 

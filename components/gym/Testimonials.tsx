@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Star, Quote, ChevronRight, ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Section from "@/components/ui/Section";
 
 const testimonials = [
   {
@@ -33,7 +34,7 @@ export default function Testimonials() {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-24 bg-background px-6 lg:px-12 max-w-[1400px] mx-auto overflow-hidden">
+    <Section id="about" showDivider>
       <div className="flex flex-col items-center mb-16 text-center">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-12 h-px bg-accent/50" />
@@ -80,12 +81,8 @@ export default function Testimonials() {
       {/* Desktop Grid View (lg+) */}
       <div className="hidden lg:grid lg:grid-cols-3 gap-6 w-full">
         {testimonials.map((t, i) => (
-          <motion.div 
+          <div 
             key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
             className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col relative"
           >
             <Quote className="w-10 h-10 text-accent mb-6" />
@@ -106,29 +103,29 @@ export default function Testimonials() {
               </div>
               <Quote className="w-16 h-16 text-white/5 absolute bottom-6 right-6 rotate-180" />
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
       {/* Mobile Carousel View (< lg) */}
       <div className="lg:hidden relative">
-        <div className="relative max-w-4xl mx-auto flex items-center justify-center">
+        <div className="relative flex items-center justify-center">
           {/* Navigation Arrows */}
           <button 
             onClick={prev}
-            className="absolute -left-2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+            className="absolute -left-4 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <div className="w-full relative min-h-[380px] flex items-center justify-center">
+          <div className="w-full relative min-h-[350px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
+                exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}
                 className="bg-card p-8 rounded-2xl border border-white/5 relative w-full"
               >
@@ -156,7 +153,7 @@ export default function Testimonials() {
 
           <button 
             onClick={next}
-            className="absolute -right-2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+            className="absolute -right-4 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5" />
@@ -174,6 +171,6 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

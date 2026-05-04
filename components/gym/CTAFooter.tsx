@@ -5,13 +5,14 @@ import { ArrowRight, Calendar, CheckCircle, PauseCircle, Users, Quote, Dumbbell,
 import { useState } from "react";
 import JoinModal from "./JoinModal";
 import { getWhatsAppUrl } from "@/lib/utils";
+import Section from "@/components/ui/Section";
 
 export default function CTAFooter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-      <section className="bg-background pt-24 pb-12 px-6 lg:px-12 max-w-[1400px] mx-auto border-t border-white/5">
+      <Section id="contact" showDivider>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center mb-16">
           <div className="w-full lg:w-1/2">
             <div className="flex items-center gap-4 mb-4">
@@ -93,7 +94,7 @@ export default function CTAFooter() {
         </div>
 
         {/* Big Stats Bar */}
-        <div className="bg-card border border-white/5 rounded-2xl p-6 md:p-8 mb-24 flex flex-wrap lg:flex-nowrap justify-between gap-8 mt-16 md:mt-24">
+        <div className="bg-card border border-white/5 rounded-2xl p-6 md:p-8 mb-8 flex flex-wrap lg:flex-nowrap justify-between gap-8 mt-16 md:mt-24">
           <div className="flex items-center gap-4 w-[calc(50%-1rem)] lg:w-auto justify-center lg:justify-start">
             <Users className="w-8 h-8 md:w-10 md:h-10 text-accent" />
             <div>
@@ -136,7 +137,7 @@ export default function CTAFooter() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Footer */}
       <footer className="bg-card pt-16 pb-8 border-t border-white/5">

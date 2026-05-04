@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
 import { Quote, Star, ArrowLeft, ArrowRight, TrendingUp, Sparkles } from "lucide-react";
 import Image from "next/image";
+import Section from "@/components/ui/Section";
 
 const STORIES = [
   {
@@ -56,7 +57,6 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
           <Image src={before} alt="Before" fill className="object-cover grayscale brightness-75" />
         </div>
         
-        {/* Task 1: Improved Divider and Handle */}
         <div 
           className="absolute inset-y-0 z-20 w-1.5 bg-accent shadow-[0_0_20px_rgba(0,255,136,0.5)]"
           style={{ left: `${sliderPos}%` }}
@@ -99,7 +99,6 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
           </motion.div>
         </AnimatePresence>
         
-        {/* Mobile Labels */}
         <div className="absolute bottom-3 left-3 z-30 px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-[8px] font-bold tracking-widest text-white uppercase border border-white/10">
           {showAfter ? "After" : "Before"}
         </div>
@@ -115,139 +114,126 @@ export default function SuccessStories() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="py-20 md:py-32 bg-background relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
+    <Section id="results" showDivider>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-[800px] h-full md:h-[800px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
-          
-          {/* Visuals Area */}
-          <div className="w-full lg:w-[45%] relative order-1 lg:order-1">
-            {/* Mobile Only Badge */}
-            <div className="lg:hidden flex items-center gap-4 bg-card/40 backdrop-blur-xl border border-white/5 p-4 rounded-xl mb-6">
-              <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-accent" />
-              </div>
-              <div>
-                <div className="text-[10px] font-bold tracking-widest text-accent uppercase mb-0.5">Transformation</div>
-                <div className="text-lg font-bold text-white leading-none">{STORIES[active].role}</div>
-              </div>
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+        
+        {/* Visuals Area */}
+        <div className="w-full lg:w-[45%] relative order-1">
+          {/* Mobile Only Badge */}
+          <div className="lg:hidden flex items-center gap-4 bg-card/40 backdrop-blur-xl border border-white/5 p-4 rounded-xl mb-6">
+            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-accent" />
             </div>
-
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-            >
-              <BeforeAfterSlider 
-                before={STORIES[active].beforeImg} 
-                after={STORIES[active].afterImg} 
-              />
-            </motion.div>
+            <div>
+              <div className="text-[10px] font-bold tracking-widest text-accent uppercase mb-0.5">Transformation</div>
+              <div className="text-lg font-bold text-white leading-none">{STORIES[active].role}</div>
+            </div>
           </div>
 
-          {/* Narrative Content */}
-          <div className="w-full lg:w-[55%] space-y-8 md:space-y-10 order-2 lg:order-2">
-            {/* Heading Area */}
-            <div className="space-y-6">
-              {/* Task 2: Repositioned Badge for Desktop */}
-              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-8 h-8 md:w-10 md:h-10 bg-accent/10 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-accent" />
-                  </div>
-                  <span className="text-accent text-[10px] md:text-sm font-bold tracking-widest uppercase">Member Success</span>
-                </motion.div>
-                
-                <div className="hidden lg:flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10">
-                  <Sparkles className="w-4 h-4 text-accent" />
-                  <span className="text-[10px] font-bold tracking-widest text-white uppercase">{STORIES[active].role}</span>
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            <BeforeAfterSlider 
+              before={STORIES[active].beforeImg} 
+              after={STORIES[active].afterImg} 
+            />
+          </motion.div>
+        </div>
+
+        {/* Narrative Content */}
+        <div className="w-full lg:w-[55%] space-y-8 md:space-y-10 order-2">
+          {/* Heading Area */}
+          <div className="space-y-6">
+            <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                  <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </div>
+                <span className="text-accent text-[10px] md:text-sm font-bold tracking-widest uppercase">Member Success</span>
               </div>
               
-              <h2 className="font-heading text-3xl md:text-7xl font-bold uppercase tracking-tighter leading-tight md:leading-[0.85]">
-                Proven <span className="text-stroke">Results.</span><br />
-                Real <span className="text-accent">Change.</span>
-              </h2>
+              <div className="hidden lg:flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                <Sparkles className="w-4 h-4 text-accent" />
+                <span className="text-[10px] font-bold tracking-widest text-white uppercase">{STORIES[active].role}</span>
+              </div>
             </div>
-
-            <div className="space-y-8 relative">
-              <Quote className="hidden md:block absolute -top-12 -left-8 w-24 h-24 text-accent/5" />
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="space-y-8 md:space-y-10"
-                >
-                  <p className="text-xl md:text-3xl font-medium text-white italic leading-relaxed max-w-2xl">
-                    &ldquo;{STORIES[active].quote}&rdquo;
-                  </p>
-                  
-                  <div className="flex items-center gap-4 md:gap-6">
-                    <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border-2 border-accent flex items-center justify-center font-heading text-xl md:text-3xl font-bold text-accent bg-accent/5">
-                      {STORIES[active].initials}
-                    </div>
-                    <div>
-                      <h4 className="text-xl md:text-2xl font-bold text-white uppercase tracking-wider">{STORIES[active].name}</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-accent text-accent" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Task 4: Enhanced Stats Section */}
-                  <div className="grid grid-cols-3 gap-8 md:gap-12 py-8 md:py-10 border-y border-white/5">
-                    {Object.entries(STORIES[active].stats).map(([label, value]) => (
-                      <div key={label} className="space-y-2">
-                        <span className="text-[8px] md:text-xs font-bold tracking-[0.2em] uppercase text-text-secondary block">{label}</span>
-                        <div className="text-lg md:text-4xl font-bold text-white font-heading">{value}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Task 3 & 5: Navigation and CTA Sync */}
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                     <button className="w-full md:w-auto bg-accent text-black px-10 py-5 font-bold tracking-widest uppercase hover:bg-accent-hover transition-all rounded-sm flex items-center justify-center gap-3 group shadow-[0_0_20px_rgba(0,255,136,0.2)]">
-                        JOIN THE MOVEMENT <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                     </button>
-
-                     <div className="flex items-center gap-6">
-                        <div className="flex gap-4">
-                          <button 
-                            onClick={() => setActive((prev) => (prev === 0 ? STORIES.length - 1 : prev - 1))}
-                            className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-accent hover:text-black hover:border-accent transition-all group"
-                          >
-                            <ArrowLeft className="w-6 h-6" />
-                          </button>
-                          <button 
-                            onClick={() => setActive((prev) => (prev === STORIES.length - 1 ? 0 : prev + 1))}
-                            className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-accent hover:text-black hover:border-accent transition-all group"
-                          >
-                            <ArrowRight className="w-6 h-6" />
-                          </button>
-                        </div>
-                        <div className="hidden md:block text-text-secondary text-sm font-bold tracking-[0.3em] uppercase">
-                          {active + 1} <span className="mx-2 opacity-20">/</span> {STORIES.length}
-                        </div>
-                     </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            
+            <h2 className="font-heading text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-tight md:leading-[0.85]">
+              Proven <span className="text-stroke">Results.</span><br />
+              Real <span className="text-accent">Change.</span>
+            </h2>
           </div>
 
+          <div className="space-y-8 relative">
+            <Quote className="hidden md:block absolute -top-12 -left-8 w-24 h-24 text-accent/5" />
+            
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="space-y-8 md:space-y-10"
+              >
+                <p className="text-xl md:text-2xl font-medium text-white italic leading-relaxed max-w-2xl">
+                  &ldquo;{STORIES[active].quote}&rdquo;
+                </p>
+                
+                <div className="flex items-center gap-4 md:gap-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-accent flex items-center justify-center font-heading text-xl md:text-2xl font-bold text-accent bg-accent/5">
+                    {STORIES[active].initials}
+                  </div>
+                  <div>
+                    <h4 className="text-xl md:text-2xl font-bold text-white uppercase tracking-wider">{STORIES[active].name}</h4>
+                    <div className="flex items-center gap-2 mt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 md:w-4 md:h-4 fill-accent text-accent" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-8 md:gap-12 py-8 md:py-10 border-y border-white/5">
+                  {Object.entries(STORIES[active].stats).map(([label, value]) => (
+                    <div key={label} className="space-y-2">
+                      <span className="text-[8px] md:text-xs font-bold tracking-[0.2em] uppercase text-text-secondary block">{label}</span>
+                      <div className="text-xl md:text-4xl font-bold text-white font-heading">{value}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                   <button className="w-full md:w-auto bg-accent text-black px-8 py-4 font-bold tracking-widest uppercase hover:bg-accent-hover transition-all rounded-sm flex items-center justify-center gap-3 group shadow-[0_0_20px_rgba(0,255,136,0.2)]">
+                      JOIN THE MOVEMENT <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                   </button>
+
+                   <div className="flex items-center gap-6">
+                      <div className="flex gap-4">
+                        <button 
+                          onClick={() => setActive((prev) => (prev === 0 ? STORIES.length - 1 : prev - 1))}
+                          className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-accent hover:text-black hover:border-accent transition-all group"
+                        >
+                          <ArrowLeft className="w-6 h-6" />
+                        </button>
+                        <button 
+                          onClick={() => setActive((prev) => (prev === STORIES.length - 1 ? 0 : prev + 1))}
+                          className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-accent hover:text-black hover:border-accent transition-all group"
+                        >
+                          <ArrowRight className="w-6 h-6" />
+                        </button>
+                      </div>
+                   </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

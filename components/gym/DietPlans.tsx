@@ -5,6 +5,7 @@ import { CheckCircle2, ClipboardList, TrendingUp, Users, ArrowRight, Target, App
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
+import Section from "@/components/ui/Section";
 
 export const plans = [
   {
@@ -48,36 +49,32 @@ export default function DietPlans() {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + plans.length) % plans.length);
 
   return (
-    <section className="py-24 bg-background px-6 lg:px-12 max-w-[1400px] mx-auto">
+    <Section id="programs" showDivider>
       <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 mb-16 text-center lg:text-left">
         <div className="max-w-2xl flex flex-col items-center lg:items-start">
           <div className="flex items-center gap-4 mb-4">
             <p className="text-accent font-bold tracking-widest text-sm uppercase">EAT RIGHT. FUEL YOUR TRANSFORMATION.</p>
             <div className="w-12 h-px bg-accent/50 hidden md:block" />
           </div>
-          <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tight mb-4">
+          <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tight mb-4 text-center lg:text-left">
             DIET <span className="text-accent">PLANS</span>
           </h2>
           <p className="text-text-secondary leading-relaxed">
             Personalized nutrition plans designed by expert nutritionists to help you achieve your fitness goals faster.
           </p>
           
-          <div className="flex flex-wrap gap-6 md:gap-12 mt-8">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-6 md:gap-12 mt-8">
             <div className="flex items-center gap-3">
               <Leaf className="w-6 h-6 text-accent" />
-              <div className="text-xs font-bold tracking-widest uppercase">Nutritionist<br/>Approved</div>
+              <div className="text-[10px] font-bold tracking-widest uppercase">Nutritionist Approved</div>
             </div>
             <div className="flex items-center gap-3">
               <Apple className="w-6 h-6 text-accent" />
-              <div className="text-xs font-bold tracking-widest uppercase">Balanced<br/>Meals</div>
+              <div className="text-[10px] font-bold tracking-widest uppercase">Balanced Meals</div>
             </div>
             <div className="flex items-center gap-3">
               <ClipboardList className="w-6 h-6 text-accent" />
-              <div className="text-xs font-bold tracking-widest uppercase">Custom Plan<br/>For You</div>
-            </div>
-            <div className="flex items-center gap-3">
-              <TrendingUp className="w-6 h-6 text-accent" />
-              <div className="text-xs font-bold tracking-widest uppercase">Faster<br/>Results</div>
+              <div className="text-[10px] font-bold tracking-widest uppercase">Custom Plans</div>
             </div>
           </div>
         </div>
@@ -88,7 +85,7 @@ export default function DietPlans() {
               <span className="text-accent text-lg">🔥</span>
             </div>
           </div>
-          <div className="text-xs text-text-secondary font-bold tracking-widest uppercase mb-2">CALORIE<br/>CONTROLLED</div>
+          <div className="text-xs text-text-secondary font-bold tracking-widest uppercase mb-2">CALORIE CONTROLLED</div>
           <div className="font-heading text-3xl text-accent font-bold">500 - 700</div>
           <div className="text-[10px] text-text-secondary tracking-widest uppercase mt-1">CAL / MEAL</div>
         </div>
@@ -96,20 +93,16 @@ export default function DietPlans() {
 
       {/* Desktop Grid View (lg+) */}
       <div className="hidden lg:grid lg:grid-cols-4 gap-6 mb-12 relative">
-        <div className="absolute -right-24 -top-64 w-[500px] h-[500px] rounded-full overflow-hidden opacity-20 pointer-events-none blur-sm z-0">
-          <Image src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1453&auto=format&fit=crop" alt="Food background" fill className="object-cover" />
-        </div>
-
         {plans.map((plan, i) => (
           <DietPlanCard key={i} plan={plan} index={i} />
         ))}
       </div>
 
       {/* Mobile Carousel View (< lg) */}
-      <div className="lg:hidden relative px-4 mb-12">
+      <div className="lg:hidden relative mb-12">
         <button 
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+          className="absolute -left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -128,21 +121,10 @@ export default function DietPlans() {
 
         <button 
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+          className="absolute -right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {plans.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentIndex(i)}
-              className={`h-1.5 transition-all rounded-full ${currentIndex === i ? 'w-6 bg-accent' : 'w-2 bg-white/20'}`}
-            />
-          ))}
-        </div>
       </div>
 
       <div className="flex justify-center mb-16">
@@ -165,37 +147,18 @@ export default function DietPlans() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-          <div className="flex items-center gap-3">
-            <ClipboardList className="w-8 h-8 text-accent" />
-            <div className="text-xs font-bold tracking-widest uppercase">ASSESSMENT<br/>BASED PLAN</div>
-          </div>
-          <div className="flex items-center gap-3">
-            <Users className="w-8 h-8 text-accent" />
-            <div className="text-xs font-bold tracking-widest uppercase">EXPERT<br/>NUTRITIONISTS</div>
-          </div>
-          <div className="flex items-center gap-3">
-            <Target className="w-8 h-8 text-accent" />
-            <div className="text-xs font-bold tracking-widest uppercase">GOAL<br/>SPECIFIC</div>
-          </div>
-        </div>
-
         <button className="bg-accent text-black px-8 py-4 font-bold tracking-widest text-sm hover:bg-accent-hover transition-colors rounded-sm uppercase w-full md:w-auto flex justify-center items-center gap-2">
           GET STARTED <ArrowRight className="w-4 h-4" />
         </button>
       </div>
-    </section>
+    </Section>
   );
 }
 
 export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: number }) {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`bg-card rounded-2xl border ${plan.popular ? 'border-accent' : 'border-white/5'} p-6 flex flex-col relative z-10 h-full`}
+    <div 
+      className={`bg-card rounded-2xl border ${plan.popular ? 'border-accent shadow-[0_0_20px_rgba(0,255,136,0.1)]' : 'border-white/5'} p-6 flex flex-col relative z-10 h-full`}
     >
       {plan.popular && (
         <div className="absolute -top-3 right-6 bg-accent text-black text-[10px] font-bold tracking-widest px-3 py-1 rounded-sm uppercase">
@@ -203,7 +166,7 @@ export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: nu
         </div>
       )}
       
-      <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-background mb-6 shadow-2xl mx-auto max-w-[200px]">
+      <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-background mb-6 shadow-2xl mx-auto max-w-[180px]">
         <Image src={plan.image} alt={plan.title} fill className="object-cover" />
         <div className="absolute top-2 left-2 w-8 h-8 rounded-full border border-accent bg-card/80 backdrop-blur-sm flex items-center justify-center">
           <plan.icon className="w-4 h-4 text-accent" />
@@ -213,7 +176,7 @@ export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: nu
       <h3 className="font-heading text-3xl font-bold tracking-wide mt-2">{plan.title}</h3>
       <p className="text-accent text-sm font-medium mb-6">{plan.subtitle}</p>
 
-      <ul className="space-y-4 mb-8 flex-1">
+      <ul className="space-y-4 mb-8 flex-1 text-left">
         {plan.features.map((feature, idx) => (
           <li key={idx} className="flex items-start gap-3 text-sm text-text-secondary">
             <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
@@ -225,6 +188,6 @@ export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: nu
       <button className={`w-full py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm flex items-center justify-center gap-2 ${plan.popular ? 'bg-accent text-black hover:bg-accent-hover' : 'border border-accent text-accent hover:bg-accent/10'}`}>
         VIEW PLAN <ArrowRight className="w-4 h-4" />
       </button>
-    </motion.div>
+    </div>
   );
 }

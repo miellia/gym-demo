@@ -255,14 +255,14 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.5, x: 100 }}
             onClick={() => setIsModalOpen(true)}
-            className="fixed bottom-8 right-8 z-[100] bg-accent text-black font-bold py-4 px-6 rounded-full shadow-[0_0_20px_rgba(var(--accent-rgb),0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group"
+            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] bg-accent text-black font-bold py-2.5 px-4 md:py-4 md:px-6 rounded-full shadow-[0_0_20px_rgba(var(--accent-rgb),0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 md:gap-3 group"
           >
             <div className="flex flex-col items-start leading-none">
-              <span className="text-[10px] uppercase tracking-widest opacity-70">Claim your</span>
-              <span className="text-sm uppercase tracking-wider">Free Day Pass</span>
+              <span className="text-[8px] md:text-[10px] uppercase tracking-widest opacity-70">Claim your</span>
+              <span className="text-[10px] md:text-sm uppercase tracking-wider">Free Day Pass</span>
             </div>
-            <div className="w-10 h-10 bg-black/10 rounded-full flex items-center justify-center group-hover:bg-black/20 transition-colors">
-              <ArrowRight className="w-5 h-5" />
+            <div className="w-8 h-8 md:w-10 md:h-10 bg-black/10 rounded-full flex items-center justify-center group-hover:bg-black/20 transition-colors">
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </div>
           </motion.button>
         )}
