@@ -20,8 +20,8 @@ export default function CTAFooter() {
               <div className="w-12 h-px bg-accent/50" />
             </div>
 
-            <h2 className="font-heading text-6xl md:text-7xl font-bold uppercase tracking-tight mb-6 leading-[0.9]">
-              JOIN THE <span className="text-white">MOVEMENT</span><br />
+            <h2 className="font-heading text-6xl md:text-7xl font-bold uppercase tracking-tight mb-6 leading-[0.9] text-foreground">
+              JOIN THE <span className="italic text-accent">MOVEMENT</span><br />
               <span className="text-accent">BE YOUR BEST.</span>
             </h2>
 
@@ -29,27 +29,27 @@ export default function CTAFooter() {
               Start your journey today and get access to world-class facilities, expert coaches, and a community that pushes you to be better every day.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-8 mb-10 p-6 rounded-xl border border-white/5 bg-card/30">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-8 mb-10 p-6 rounded-xl border border-card-border glass shadow-sm">
               <div className="flex items-center gap-3">
                 <CheckCircle className="w-8 h-8 text-accent" />
                 <div>
-                  <div className="font-bold text-sm tracking-widest uppercase">NO JOINING FEE</div>
+                  <div className="font-bold text-sm tracking-widest uppercase text-foreground">NO JOINING FEE</div>
                   <div className="text-text-secondary text-xs">Limited Time Offer</div>
                 </div>
               </div>
-              <div className="hidden sm:block w-px h-10 bg-white/10" />
+              <div className="hidden sm:block w-px h-10 bg-card-border" />
               <div className="flex items-center gap-3">
                 <PauseCircle className="w-8 h-8 text-accent" />
                 <div>
-                  <div className="font-bold text-sm tracking-widest uppercase">FREEZE YOUR PLAN</div>
+                  <div className="font-bold text-sm tracking-widest uppercase text-foreground">FREEZE YOUR PLAN</div>
                   <div className="text-text-secondary text-xs">Pause Anytime</div>
                 </div>
               </div>
-              <div className="hidden sm:block w-px h-10 bg-white/10" />
+              <div className="hidden sm:block w-px h-10 bg-card-border" />
               <div className="flex items-center gap-3">
                 <Users className="w-8 h-8 text-accent" />
                 <div>
-                  <div className="font-bold text-sm tracking-widest uppercase">BRING A FRIEND</div>
+                  <div className="font-bold text-sm tracking-widest uppercase text-foreground">BRING A FRIEND</div>
                   <div className="text-text-secondary text-xs">Get 10% OFF</div>
                 </div>
               </div>
@@ -60,7 +60,7 @@ export default function CTAFooter() {
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-accent text-black px-8 py-4 font-bold hover:bg-accent-hover transition-colors rounded-sm text-sm uppercase"
+                className="flex items-center justify-center gap-2 bg-accent text-black px-8 py-4 font-bold hover:bg-accent-hover transition-colors rounded-sm text-sm uppercase shadow-md"
               >
                 BOOK VIA WHATSAPP <ArrowRight className="w-4 h-4" />
               </a>
@@ -74,7 +74,7 @@ export default function CTAFooter() {
           </div>
 
           <div className="w-full lg:w-1/2 relative">
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
+            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-card-border shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop"
                 alt="Gym member"
@@ -84,55 +84,55 @@ export default function CTAFooter() {
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             </div>
 
-            <div className="absolute -bottom-8 -right-4 md:right-8 bg-card border border-white/5 p-6 rounded-2xl max-w-xs shadow-2xl backdrop-blur-md">
+            <div className="absolute -bottom-8 -right-4 md:right-8 glass border border-card-border p-6 rounded-2xl max-w-xs shadow-2xl backdrop-blur-md">
               <Quote className="w-8 h-8 text-accent mb-4" />
-              <p className="text-white text-lg font-medium leading-relaxed">
-                &ldquo;The only bad workout is the one that <span className="text-accent">didn&apos;t happen.</span>&rdquo;
+              <p className="text-foreground text-lg font-medium leading-relaxed italic">
+                &ldquo;The only bad workout is the one that <span className="text-accent italic font-bold">didn&apos;t happen.</span>&rdquo;
               </p>
             </div>
           </div>
         </div>
 
         {/* Big Stats Bar */}
-        <div className="bg-card border border-white/5 rounded-2xl p-6 md:p-8 mb-8 flex flex-wrap lg:flex-nowrap justify-between gap-8 mt-16 md:mt-24">
+        <div className="glass border border-card-border rounded-2xl p-6 md:p-8 mb-8 flex flex-wrap lg:flex-nowrap justify-between gap-8 mt-16 md:mt-24 shadow-sm">
           <div className="flex items-center gap-4 w-[calc(50%-1rem)] lg:w-auto justify-center lg:justify-start">
             <Users className="w-8 h-8 md:w-10 md:h-10 text-accent" />
             <div>
-              <div className="font-heading text-2xl md:text-3xl font-bold">500+</div>
+              <div className="font-heading text-2xl md:text-3xl font-bold text-foreground">500+</div>
               <div className="text-text-secondary text-[10px] font-medium tracking-widest uppercase">HAPPY MEMBERS</div>
             </div>
           </div>
-          <div className="hidden lg:block w-px h-12 bg-white/10" />
+          <div className="hidden lg:block w-px h-12 bg-card-border" />
           <div className="flex items-center gap-4 w-[calc(50%-1rem)] lg:w-auto justify-center">
             <Dumbbell className="w-8 h-8 md:w-10 md:h-10 text-accent" />
             <div>
-              <div className="font-heading text-2xl md:text-3xl font-bold">20+</div>
+              <div className="font-heading text-2xl md:text-3xl font-bold text-foreground">20+</div>
               <div className="text-text-secondary text-[10px] font-medium tracking-widest uppercase">EXPERT TRAINERS</div>
             </div>
           </div>
-          <div className="hidden lg:block w-px h-12 bg-white/10" />
+          <div className="hidden lg:block w-px h-12 bg-card-border" />
           <div className="flex items-center gap-4 w-[calc(50%-1rem)] lg:w-auto justify-center">
             <div className="w-8 h-8 md:w-10 md:h-10 rounded flex items-center justify-center border-2 border-accent text-accent font-bold">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" /><line x1="4" y1="22" x2="4" y2="15" /></svg>
             </div>
             <div>
-              <div className="font-heading text-2xl md:text-3xl font-bold">10K+</div>
+              <div className="font-heading text-2xl md:text-3xl font-bold text-foreground">10K+</div>
               <div className="text-text-secondary text-[10px] font-medium tracking-widest uppercase">TRANSFORMATIONS</div>
             </div>
           </div>
-          <div className="hidden lg:block w-px h-12 bg-white/10" />
+          <div className="hidden lg:block w-px h-12 bg-card-border" />
           <div className="flex items-center gap-4 w-[calc(50%-1rem)] lg:w-auto justify-center">
             <Star className="w-8 h-8 md:w-10 md:h-10 text-accent" />
             <div>
-              <div className="font-heading text-2xl md:text-3xl font-bold">4.9</div>
+              <div className="font-heading text-2xl md:text-3xl font-bold text-foreground">4.9</div>
               <div className="text-text-secondary text-[10px] font-medium tracking-widest uppercase">AVERAGE RATING</div>
             </div>
           </div>
-          <div className="hidden lg:block w-px h-12 bg-white/10" />
+          <div className="hidden lg:block w-px h-12 bg-card-border" />
           <div className="flex items-center gap-4 w-full lg:w-auto justify-center lg:justify-end">
             <Calendar className="w-8 h-8 md:w-10 md:h-10 text-accent" />
             <div>
-              <div className="font-heading text-2xl md:text-3xl font-bold">7</div>
+              <div className="font-heading text-2xl md:text-3xl font-bold text-foreground">7</div>
               <div className="text-text-secondary text-[10px] font-medium tracking-widest uppercase">DAYS A WEEK</div>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function CTAFooter() {
       </Section>
 
       {/* Footer */}
-      <footer className="bg-card pt-16 pb-8 border-t border-white/5">
+      <footer className="bg-foreground/[0.02] pt-16 pb-8 border-t border-card-border">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
 
@@ -150,29 +150,29 @@ export default function CTAFooter() {
                   <path d="M10 28L18 4H26L18 28H10Z" fill="currentColor" />
                   <path d="M2 28L10 4H18L10 28H2Z" fill="currentColor" />
                 </svg>
-                <span className="font-heading text-2xl tracking-wider font-bold italic">FUELFIT</span>
+                <span className="font-heading text-2xl tracking-wider font-bold italic text-foreground">FUELFIT</span>
               </div>
               <p className="text-text-secondary mb-6 leading-relaxed">
                 More than a gym. It&apos;s a lifestyle. Join a community that inspires, motivates and transforms.
               </p>
               <div className="flex items-center gap-4">
-                <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors text-white">
+                <a href="#" className="w-10 h-10 rounded-full border border-card-border flex items-center justify-center hover:bg-card-border transition-colors text-foreground">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors text-white">
+                <a href="#" className="w-10 h-10 rounded-full border border-card-border flex items-center justify-center hover:bg-card-border transition-colors text-foreground">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors text-white">
+                <a href="#" className="w-10 h-10 rounded-full border border-card-border flex items-center justify-center hover:bg-card-border transition-colors text-foreground">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors text-white">
+                <a href="#" className="w-10 h-10 rounded-full border border-card-border flex items-center justify-center hover:bg-card-border transition-colors text-foreground">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.674c0 1.513-1.242 2.756-2.756 2.756s-2.756-1.243-2.756-2.756 1.242-2.756 2.756-2.756h.774V9.529h-.774c-3.411 0-6.19 2.779-6.19 6.19s2.779 6.19 6.19 6.19 6.19-2.779 6.19-6.19V11.23a8.121 8.121 0 0 0 4.79 1.545v-3.434a4.814 4.814 0 0 1-1.009-.655z" /></svg>
                 </a>
               </div>
             </div>
 
             <div className="lg:col-span-2">
-              <h4 className="font-bold tracking-widest uppercase mb-6">QUICK LINKS</h4>
+              <h4 className="font-bold tracking-widest uppercase mb-6 text-foreground">QUICK LINKS</h4>
               <ul className="space-y-4 text-sm text-text-secondary">
                 <li><a href="#about" className="hover:text-accent transition-colors">About Us</a></li>
                 <li><a href="#trainers" className="hover:text-accent transition-colors">Trainers</a></li>
@@ -184,7 +184,7 @@ export default function CTAFooter() {
 
 
             <div className="lg:col-span-3">
-              <h4 className="font-bold tracking-widest uppercase mb-6">CONTACT US</h4>
+              <h4 className="font-bold tracking-widest uppercase mb-6 text-foreground">CONTACT US</h4>
               <ul className="space-y-4 text-sm text-text-secondary">
                 <li className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-accent shrink-0" />
@@ -202,31 +202,31 @@ export default function CTAFooter() {
             </div>
 
             <div className="lg:col-span-3">
-              <h4 className="font-bold tracking-widest uppercase mb-6">GYM HOURS</h4>
+              <h4 className="font-bold tracking-widest uppercase mb-6 text-foreground">GYM HOURS</h4>
               <ul className="space-y-4 text-sm text-text-secondary">
                 <li className="flex justify-between">
                   <span>Mon - Fri</span>
-                  <span className="text-white">5:00 AM - 11:00 PM</span>
+                  <span className="text-foreground font-medium">5:00 AM - 11:00 PM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Saturday</span>
-                  <span className="text-white">7:00 AM - 10:00 PM</span>
+                  <span className="text-foreground font-medium">7:00 AM - 10:00 PM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Sunday</span>
-                  <span className="text-white">7:00 AM - 8:00 PM</span>
+                  <span className="text-foreground font-medium">7:00 AM - 8:00 PM</span>
                 </li>
               </ul>
             </div>
 
           </div>
 
-          <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-secondary">
+          <div className="border-t border-card-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-secondary">
             <p>Demo built by Ellia ❤️</p>
             <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <span className="w-px h-4 bg-white/10" />
-              <a href="#" className="hover:text-white transition-colors">Terms & Conditions</a>
+              <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
+              <span className="w-px h-4 bg-foreground/10" />
+              <a href="#" className="hover:text-foreground transition-colors">Terms & Conditions</a>
             </div>
           </div>
         </div>

@@ -53,18 +53,18 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean, onClos
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[10000] flex items-center justify-center p-4"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-card border border-white/10 rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl relative overflow-hidden"
+              className="glass border border-card-border rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl relative overflow-hidden"
             >
               <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 text-text-secondary hover:text-white transition-colors"
+                className="absolute top-4 right-4 text-text-secondary hover:text-foreground transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -79,22 +79,22 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean, onClos
                   >
                     <CheckCircle2 className="w-10 h-10 text-accent" />
                   </motion.div>
-                  <h3 className="font-heading text-3xl font-bold uppercase tracking-wider mb-2">Request Received!</h3>
+                  <h3 className="font-heading text-3xl font-bold uppercase tracking-wider mb-2 text-foreground">Request Received!</h3>
                   <p className="text-text-secondary">Our team will contact you shortly to confirm your membership and schedule your first visit.</p>
                 </div>
               ) : (
                 <>
-                  <div className="flex items-center gap-4 mb-8">
+                  <div className="flex items-center gap-4 mb-8 text-left">
                     <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center">
                       <Dumbbell className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-heading text-3xl font-bold uppercase tracking-wider">Join FuelFit</h3>
+                      <h3 className="font-heading text-3xl font-bold uppercase tracking-wider text-foreground">Join FuelFit</h3>
                       <p className="text-accent text-sm font-bold tracking-widest uppercase">Start Your Journey</p>
                     </div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4 text-left">
                     <div className="space-y-2">
                       <label className="text-xs font-bold tracking-widest uppercase text-text-secondary">Full Name</label>
                       <div className="relative">
@@ -105,7 +105,7 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean, onClos
                           placeholder="John Doe" 
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full bg-background border border-white/10 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-accent transition-colors"
+                          className="w-full bg-card-border border border-card-border rounded-lg py-3 pl-12 pr-4 text-foreground focus:outline-none focus:border-accent transition-colors"
                         />
                       </div>
                     </div>
@@ -121,7 +121,7 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean, onClos
                             placeholder="john@example.com" 
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full bg-background border border-white/10 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-accent transition-colors"
+                            className="w-full bg-card-border border border-card-border rounded-lg py-3 pl-12 pr-4 text-foreground focus:outline-none focus:border-accent transition-colors"
                           />
                         </div>
                       </div>
@@ -135,7 +135,7 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean, onClos
                             placeholder="+1 (555) 000-0000" 
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full bg-background border border-white/10 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-accent transition-colors"
+                            className="w-full bg-card-border border border-card-border rounded-lg py-3 pl-12 pr-4 text-foreground focus:outline-none focus:border-accent transition-colors"
                           />
                         </div>
                       </div>
@@ -146,19 +146,19 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean, onClos
                       <select 
                         value={formData.plan}
                         onChange={(e) => setFormData({ ...formData, plan: e.target.value })}
-                        className="w-full bg-background border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-accent transition-colors appearance-none"
+                        className="w-full bg-card-border border border-card-border rounded-lg py-3 px-4 text-foreground focus:outline-none focus:border-accent transition-colors appearance-none"
                       >
-                        <option value="">I&apos;m not sure yet</option>
-                        <option value="basic">Basic Plan ($99/mo)</option>
-                        <option value="pro">Pro Plan ($199/mo)</option>
-                        <option value="elite">Elite Plan ($299/mo)</option>
+                        <option value="" className="bg-background">I&apos;m not sure yet</option>
+                        <option value="basic" className="bg-background">Basic Plan ($49/mo)</option>
+                        <option value="pro" className="bg-background">Pro Plan ($99/mo)</option>
+                        <option value="elite" className="bg-background">Elite Plan ($149/mo)</option>
                       </select>
                     </div>
 
                     <button 
                       disabled={isLoading}
                       type="submit" 
-                      className="w-full bg-accent text-black font-bold tracking-widest uppercase py-4 rounded-lg mt-4 hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-accent text-black font-bold tracking-widest uppercase py-4 rounded-lg mt-4 hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                     >
                       {isLoading ? (
                         <>Processing... <Loader2 className="w-5 h-5 animate-spin" /></>

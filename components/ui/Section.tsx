@@ -12,10 +12,10 @@ interface SectionProps {
 
 export default function Section({ children, id, className = "", showDivider = false }: SectionProps) {
   return (
-    <section id={id} className={`relative ${className}`}>
+    <section id={id} className={`relative ${className} bg-background`}>
       {showDivider && (
         <div className="absolute top-0 left-0 w-full flex justify-center px-6 lg:px-12 pointer-events-none">
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-foreground/5 to-transparent" />
         </div>
       )}
       

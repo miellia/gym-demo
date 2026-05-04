@@ -56,8 +56,8 @@ export default function DietPlans() {
             <p className="text-accent font-bold tracking-widest text-sm uppercase">EAT RIGHT. FUEL YOUR TRANSFORMATION.</p>
             <div className="w-12 h-px bg-accent/50 hidden md:block" />
           </div>
-          <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tight mb-4 text-center lg:text-left">
-            DIET <span className="text-accent">PLANS</span>
+          <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tight mb-4 text-center lg:text-left text-foreground">
+            DIET <span className="text-accent italic">PLANS</span>
           </h2>
           <p className="text-text-secondary leading-relaxed">
             Personalized nutrition plans designed by expert nutritionists to help you achieve your fitness goals faster.
@@ -66,22 +66,22 @@ export default function DietPlans() {
           <div className="flex flex-wrap justify-center lg:justify-start gap-6 md:gap-12 mt-8">
             <div className="flex items-center gap-3">
               <Leaf className="w-6 h-6 text-accent" />
-              <div className="text-[10px] font-bold tracking-widest uppercase">Nutritionist Approved</div>
+              <div className="text-[10px] font-bold tracking-widest uppercase text-foreground">Nutritionist Approved</div>
             </div>
             <div className="flex items-center gap-3">
               <Apple className="w-6 h-6 text-accent" />
-              <div className="text-[10px] font-bold tracking-widest uppercase">Balanced Meals</div>
+              <div className="text-[10px] font-bold tracking-widest uppercase text-foreground">Balanced Meals</div>
             </div>
             <div className="flex items-center gap-3">
               <ClipboardList className="w-6 h-6 text-accent" />
-              <div className="text-[10px] font-bold tracking-widest uppercase">Custom Plans</div>
+              <div className="text-[10px] font-bold tracking-widest uppercase text-foreground">Custom Plans</div>
             </div>
           </div>
         </div>
 
-        <div className="bg-card border border-white/5 rounded-xl p-6 hidden lg:block text-center min-w-[180px]">
+        <div className="glass border border-card-border rounded-xl p-6 hidden lg:block text-center min-w-[180px] shadow-sm">
           <div className="flex justify-center mb-2">
-            <div className="w-8 h-8 rounded-full border border-accent flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full border border-accent flex items-center justify-center bg-white/50">
               <span className="text-accent text-lg">🔥</span>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function DietPlans() {
       <div className="lg:hidden relative mb-12">
         <button 
           onClick={prev}
-          className="absolute -left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+          className="absolute -left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -121,7 +121,7 @@ export default function DietPlans() {
 
         <button 
           onClick={next}
-          className="absolute -right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+          className="absolute -right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-card-border flex items-center justify-center glass hover:bg-accent hover:text-black transition-all shadow-md"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
@@ -130,15 +130,15 @@ export default function DietPlans() {
       <div className="flex justify-center mb-16">
         <Link 
           href="/diet-plans"
-          className="flex items-center gap-3 border border-white/10 text-white px-8 py-4 font-bold tracking-wider hover:bg-white/5 transition-colors rounded-sm text-sm uppercase"
+          className="flex items-center gap-3 border border-card-border text-foreground px-8 py-4 font-bold tracking-wider hover:bg-black/5 transition-colors rounded-sm text-sm uppercase shadow-sm glass"
         >
           <ClipboardList className="w-4 h-4 text-accent" /> VIEW ALL DIET PLANS <ArrowRight className="w-4 h-4 text-accent" />
         </Link>
       </div>
 
-      <div className="bg-card border border-white/5 rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div className="glass border border-card-border rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-sm">
         <div className="flex items-center gap-6 text-center lg:text-left">
-          <div className="w-16 h-16 rounded-full border-2 border-accent overflow-hidden relative shrink-0">
+          <div className="w-16 h-16 rounded-full border-2 border-accent overflow-hidden relative shrink-0 shadow-md">
              <Image src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" alt="Coach" fill className="object-cover" />
           </div>
           <div>
@@ -147,7 +147,7 @@ export default function DietPlans() {
           </div>
         </div>
 
-        <button className="bg-accent text-black px-8 py-4 font-bold tracking-widest text-sm hover:bg-accent-hover transition-colors rounded-sm uppercase w-full md:w-auto flex justify-center items-center gap-2">
+        <button className="bg-accent text-black px-8 py-4 font-bold tracking-widest text-sm hover:bg-accent-hover transition-colors rounded-sm uppercase w-full md:w-auto flex justify-center items-center gap-2 shadow-md">
           GET STARTED <ArrowRight className="w-4 h-4" />
         </button>
       </div>
@@ -158,23 +158,23 @@ export default function DietPlans() {
 export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: number }) {
   return (
     <div 
-      className={`bg-card rounded-2xl border ${plan.popular ? 'border-accent shadow-[0_0_20px_rgba(0,255,136,0.1)]' : 'border-white/5'} p-6 flex flex-col relative z-10 h-full`}
+      className={`glass rounded-2xl border ${plan.popular ? 'border-accent shadow-md' : 'border-card-border'} p-6 flex flex-col relative z-10 h-full shadow-sm`}
     >
       {plan.popular && (
-        <div className="absolute -top-3 right-6 bg-accent text-black text-[10px] font-bold tracking-widest px-3 py-1 rounded-sm uppercase">
+        <div className="absolute -top-3 right-6 bg-accent text-black text-[10px] font-bold tracking-widest px-3 py-1 rounded-sm uppercase shadow-sm">
           POPULAR
         </div>
       )}
       
-      <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-background mb-6 shadow-2xl mx-auto max-w-[180px]">
+      <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-white mb-6 shadow-xl mx-auto max-w-[180px]">
         <Image src={plan.image} alt={plan.title} fill className="object-cover" />
-        <div className="absolute top-2 left-2 w-8 h-8 rounded-full border border-accent bg-card/80 backdrop-blur-sm flex items-center justify-center">
+        <div className="absolute top-2 left-2 w-8 h-8 rounded-full border border-accent bg-white/60 backdrop-blur-sm flex items-center justify-center">
           <plan.icon className="w-4 h-4 text-accent" />
         </div>
       </div>
 
-      <h3 className="font-heading text-3xl font-bold tracking-wide mt-2">{plan.title}</h3>
-      <p className="text-accent text-sm font-medium mb-6">{plan.subtitle}</p>
+      <h3 className="font-heading text-3xl font-bold tracking-wide mt-2 text-foreground">{plan.title}</h3>
+      <p className="text-accent text-sm font-medium mb-6 uppercase tracking-wider">{plan.subtitle}</p>
 
       <ul className="space-y-4 mb-8 flex-1 text-left">
         {plan.features.map((feature, idx) => (
@@ -185,7 +185,7 @@ export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: nu
         ))}
       </ul>
 
-      <button className={`w-full py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm flex items-center justify-center gap-2 ${plan.popular ? 'bg-accent text-black hover:bg-accent-hover' : 'border border-accent text-accent hover:bg-accent/10'}`}>
+      <button className={`w-full py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm flex items-center justify-center gap-2 shadow-sm ${plan.popular ? 'bg-accent text-black hover:bg-accent-hover' : 'border border-accent text-accent hover:bg-accent/10'}`}>
         VIEW PLAN <ArrowRight className="w-4 h-4" />
       </button>
     </div>

@@ -68,22 +68,22 @@ export default function Membership() {
           <p className="text-accent font-bold tracking-widest text-sm uppercase">CHOOSE YOUR PLAN</p>
           <div className="w-12 h-px bg-accent/50" />
         </div>
-        <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tight mb-4">
-          MEMBERSHIP <span className="text-accent">PLANS</span>
+        <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase tracking-tight mb-4 text-foreground">
+          MEMBERSHIP <span className="text-accent italic">PLANS</span>
         </h2>
         <p className="text-text-secondary">Flexible plans. Premium facilities. Real results.</p>
       </div>
 
       {/* Mobile Tab Buttons */}
-      <div className="lg:hidden flex justify-center gap-2 mb-12 bg-card/30 p-1.5 rounded-xl border border-white/5 max-w-sm mx-auto">
+      <div className="lg:hidden flex justify-center gap-2 mb-12 glass p-1.5 rounded-xl border border-card-border max-w-sm mx-auto shadow-sm">
         {plans.map((plan, i) => (
           <button
             key={plan.name}
             onClick={() => setActiveTab(i)}
             className={`flex-1 py-3 px-4 rounded-lg text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
               activeTab === i 
-                ? "bg-accent text-black shadow-[0_0_20px_rgba(0,255,136,0.2)]" 
-                : "text-text-secondary hover:text-white hover:bg-white/5"
+                ? "bg-accent text-black shadow-md" 
+                : "text-text-secondary hover:text-foreground hover:bg-card-border"
             }`}
           >
             {plan.name}
@@ -114,14 +114,14 @@ export default function Membership() {
       </div>
 
       {/* Footer Benefits Section */}
-      <div className="bg-card border border-white/5 rounded-2xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
+      <div className="glass border border-card-border rounded-2xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10 shadow-sm">
         <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap justify-center lg:justify-start gap-10 md:gap-16 w-full lg:w-auto">
           <div className="flex items-center gap-5">
             <div className="w-14 h-14 rounded-full border border-accent/20 flex items-center justify-center shrink-0">
               <Calendar className="w-7 h-7 text-accent" />
             </div>
             <div>
-              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-white">NO JOINING FEE</div>
+              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-foreground">NO JOINING FEE</div>
               <div className="text-text-secondary text-sm">Limited Time Offer</div>
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function Membership() {
               <PauseCircle className="w-7 h-7 text-accent" />
             </div>
             <div>
-              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-white">FREEZE YOUR PLAN</div>
+              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-foreground">FREEZE YOUR PLAN</div>
               <div className="text-text-secondary text-sm">Pause Anytime</div>
             </div>
           </div>
@@ -141,20 +141,20 @@ export default function Membership() {
               <Users className="w-7 h-7 text-accent" />
             </div>
             <div>
-              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-white">BRING A FRIEND</div>
+              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-foreground">BRING A FRIEND</div>
               <div className="text-text-secondary text-sm">Get 10% OFF</div>
             </div>
           </div>
         </div>
 
-        <div className="w-full lg:w-[400px] flex flex-col items-center gap-6 bg-black/40 p-8 lg:p-10 rounded-2xl border border-white/5 text-center">
+        <div className="w-full lg:w-[400px] flex flex-col items-center gap-6 glass p-8 lg:p-10 rounded-2xl border border-card-border text-center shadow-sm">
           <div>
-            <h4 className="font-bold text-xl tracking-[0.2em] uppercase text-white mb-2">READY TO TRANSFORM?</h4>
+            <h4 className="font-bold text-xl tracking-[0.2em] uppercase text-foreground mb-2">READY TO TRANSFORM?</h4>
             <p className="text-text-secondary text-sm leading-relaxed">Let&apos;s build your strongest version together.</p>
           </div>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="w-full bg-accent text-black py-4 font-bold tracking-[0.2em] text-sm hover:bg-accent-hover transition-all rounded-lg uppercase flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,136,0.2)]"
+            className="w-full bg-accent text-black py-4 font-bold tracking-[0.2em] text-sm hover:bg-accent-hover transition-all rounded-lg uppercase flex items-center justify-center gap-2 shadow-md"
           >
             JOIN NOW <ArrowRight className="w-5 h-5" />
           </button>
@@ -169,24 +169,24 @@ export default function Membership() {
 function MembershipCard({ plan, i, onChoose }: { plan: typeof plans[0], i: number, onChoose: () => void }) {
   return (
     <div 
-      className={`bg-card rounded-2xl relative flex flex-col ${plan.popular ? 'border-2 border-accent transform lg:-translate-y-4 shadow-[0_0_30px_rgba(0,255,136,0.1)] py-12 px-8' : 'border border-white/5 py-10 px-8'}`}
+      className={`glass rounded-2xl relative flex flex-col shadow-sm ${plan.popular ? 'border-2 border-accent transform lg:-translate-y-4 py-12 px-8' : 'border border-card-border py-10 px-8'}`}
     >
       {plan.popular && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-black text-xs font-bold tracking-widest px-6 py-2 rounded-sm uppercase flex items-center gap-2">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-black text-xs font-bold tracking-widest px-6 py-2 rounded-sm uppercase flex items-center gap-2 shadow-md">
           <StarIcon className="w-3 h-3" /> MOST POPULAR
         </div>
       )}
       
       <div className="flex justify-center mb-6">
-        <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full border border-card-border flex items-center justify-center bg-card-border">
           <plan.icon className="w-8 h-8 text-accent" />
         </div>
       </div>
 
-      <div className="text-center border-b border-white/5 pb-8 mb-8">
-        <h3 className="font-heading text-4xl font-bold tracking-wider mb-2">{plan.name}</h3>
+      <div className="text-center border-b border-card-border pb-8 mb-8">
+        <h3 className="font-heading text-4xl font-bold tracking-wider mb-2 text-foreground">{plan.name}</h3>
         <p className="text-text-secondary text-sm mb-6">{plan.subtitle}</p>
-        <div className="flex items-end justify-center gap-1 font-heading">
+        <div className="flex items-end justify-center gap-1 font-heading text-foreground">
           <span className="text-3xl font-bold">$</span>
           <span className="text-6xl font-bold leading-none">{plan.price}</span>
           <span className="text-text-secondary text-lg mb-1 tracking-widest font-sans">{plan.period}</span>
@@ -204,7 +204,7 @@ function MembershipCard({ plan, i, onChoose }: { plan: typeof plans[0], i: numbe
 
       <button 
         onClick={onChoose}
-        className={`w-full py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm flex items-center justify-center gap-2 ${plan.popular ? 'bg-accent text-black hover:bg-accent-hover' : 'border border-accent text-accent hover:bg-accent/10'}`}
+        className={`w-full py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm flex items-center justify-center gap-2 shadow-sm ${plan.popular ? 'bg-accent text-black hover:bg-accent-hover' : 'border border-accent text-accent hover:bg-accent/10'}`}
       >
         CHOOSE PLAN <ArrowRight className="w-4 h-4" />
       </button>

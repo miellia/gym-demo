@@ -81,7 +81,7 @@ export default function ScrollControls() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToTop}
-                className="w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white shadow-xl transition-colors hover:bg-white/20"
+                className="w-12 h-12 flex items-center justify-center glass rounded-full text-foreground shadow-lg border border-card-border"
                 aria-label="Scroll to Top"
               >
                 <ChevronUp className="w-6 h-6" />
@@ -96,7 +96,7 @@ export default function ScrollControls() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToNextSection}
-                className="w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white shadow-xl transition-colors hover:bg-white/20"
+                className="w-12 h-12 flex items-center justify-center glass rounded-full text-foreground shadow-lg border border-card-border"
                 aria-label="Scroll to Next Section"
               >
                 <ChevronDown className="w-6 h-6" />

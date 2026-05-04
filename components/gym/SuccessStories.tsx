@@ -47,31 +47,31 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
         ref={containerRef}
         onMouseMove={handleMove}
         onTouchMove={handleMove}
-        className="hidden md:block relative aspect-[4/5] w-full rounded-3xl overflow-hidden cursor-ew-resize group"
+        className="hidden md:block relative aspect-[4/5] w-full rounded-3xl overflow-hidden cursor-ew-resize group shadow-2xl"
       >
         <Image src={after} alt="After" fill className="object-cover" />
         <div 
           className="absolute inset-0 z-10"
           style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
         >
-          <Image src={before} alt="Before" fill className="object-cover grayscale brightness-75" />
+          <Image src={before} alt="Before" fill className="object-cover grayscale" />
         </div>
         
         <div 
-          className="absolute inset-y-0 z-20 w-1.5 bg-accent shadow-[0_0_20px_rgba(0,255,136,0.5)]"
+          className="absolute inset-y-0 z-20 w-1.5 bg-accent"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,255,136,0.4)] transition-transform duration-200 group-hover:scale-110">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110 border-4 border-background">
             <div className="flex items-center gap-1">
-              <div className="w-1 h-4 bg-black/40 rounded-full" />
-              <div className="w-1 h-4 bg-black/40 rounded-full" />
+              <div className="w-1 h-4 bg-foreground/20 rounded-full" />
+              <div className="w-1 h-4 bg-foreground/20 rounded-full" />
             </div>
           </div>
         </div>
-        <div className="absolute bottom-6 left-6 z-30 px-4 py-2 bg-black/60 backdrop-blur-md rounded-full text-xs font-bold tracking-widest text-white uppercase border border-white/10 pointer-events-none">
+        <div className="absolute bottom-6 left-6 z-30 px-4 py-2 glass rounded-full text-xs font-bold tracking-widest text-foreground uppercase border border-card-border pointer-events-none">
           Before
         </div>
-        <div className="absolute bottom-6 right-6 z-30 px-4 py-2 bg-accent/90 backdrop-blur-md rounded-full text-xs font-bold tracking-widest text-black uppercase border border-white/10 pointer-events-none">
+        <div className="absolute bottom-6 right-6 z-30 px-4 py-2 bg-accent/90 rounded-full text-xs font-bold tracking-widest text-black uppercase border border-white/20 shadow-md pointer-events-none">
           After
         </div>
       </div>
@@ -79,7 +79,7 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
       {/* Mobile Tap-Toggle View (< md) */}
       <div 
         onClick={() => setShowAfter(!showAfter)}
-        className="md:hidden relative aspect-square w-full rounded-2xl overflow-hidden cursor-pointer"
+        className="md:hidden relative aspect-square w-full rounded-2xl overflow-hidden cursor-pointer shadow-lg"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -94,15 +94,15 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
               src={showAfter ? after : before} 
               alt={showAfter ? "After" : "Before"} 
               fill 
-              className={`object-cover ${!showAfter ? 'grayscale brightness-75' : ''}`} 
+              className={`object-cover ${!showAfter ? 'grayscale' : ''}`} 
             />
           </motion.div>
         </AnimatePresence>
         
-        <div className="absolute bottom-3 left-3 z-30 px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-[8px] font-bold tracking-widest text-white uppercase border border-white/10">
+        <div className="absolute bottom-3 left-3 z-30 px-3 py-1 glass rounded-full text-[8px] font-bold tracking-widest text-foreground uppercase border border-card-border">
           {showAfter ? "After" : "Before"}
         </div>
-        <div className="absolute top-3 right-3 z-30 bg-accent/90 text-black px-2 py-1 rounded text-[8px] font-bold uppercase tracking-widest flex items-center gap-1">
+        <div className="absolute top-3 right-3 z-30 bg-accent/90 text-black px-2 py-1 rounded text-[8px] font-bold uppercase tracking-widest flex items-center gap-1 shadow-sm">
           Tap to toggle
         </div>
       </div>
@@ -122,13 +122,13 @@ export default function SuccessStories() {
         {/* Visuals Area */}
         <div className="w-full lg:w-[45%] relative order-1">
           {/* Mobile Only Badge */}
-          <div className="lg:hidden flex items-center gap-4 bg-card/40 backdrop-blur-xl border border-white/5 p-4 rounded-xl mb-6">
+          <div className="lg:hidden flex items-center gap-4 glass border border-card-border p-4 rounded-xl mb-6 shadow-sm">
             <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-accent" />
             </div>
             <div>
               <div className="text-[10px] font-bold tracking-widest text-accent uppercase mb-0.5">Transformation</div>
-              <div className="text-lg font-bold text-white leading-none">{STORIES[active].role}</div>
+              <div className="text-lg font-bold text-foreground leading-none">{STORIES[active].role}</div>
             </div>
           </div>
 
@@ -157,20 +157,20 @@ export default function SuccessStories() {
                 <span className="text-accent text-[10px] md:text-sm font-bold tracking-widest uppercase">Member Success</span>
               </div>
               
-              <div className="hidden lg:flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+              <div className="hidden lg:flex items-center gap-3 bg-card-border px-4 py-2 rounded-full border border-card-border glass shadow-sm">
                 <Sparkles className="w-4 h-4 text-accent" />
-                <span className="text-[10px] font-bold tracking-widest text-white uppercase">{STORIES[active].role}</span>
+                <span className="text-[10px] font-bold tracking-widest text-foreground uppercase">{STORIES[active].role}</span>
               </div>
             </div>
             
-            <h2 className="font-heading text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-tight md:leading-[0.85]">
-              Proven <span className="text-stroke">Results.</span><br />
+            <h2 className="font-heading text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-tight md:leading-[0.85] text-foreground">
+              Proven <span className="italic text-accent">Results.</span><br />
               Real <span className="text-accent">Change.</span>
             </h2>
           </div>
 
           <div className="space-y-8 relative">
-            <Quote className="hidden md:block absolute -top-12 -left-8 w-24 h-24 text-accent/5" />
+            <Quote className="hidden md:block absolute -top-12 -left-8 w-24 h-24 text-accent/10" />
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -180,16 +180,16 @@ export default function SuccessStories() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-8 md:space-y-10"
               >
-                <p className="text-xl md:text-2xl font-medium text-white italic leading-relaxed max-w-2xl">
+                <p className="text-xl md:text-2xl font-medium text-foreground italic leading-relaxed max-w-2xl">
                   &ldquo;{STORIES[active].quote}&rdquo;
                 </p>
                 
                 <div className="flex items-center gap-4 md:gap-6">
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-accent flex items-center justify-center font-heading text-xl md:text-2xl font-bold text-accent bg-accent/5">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-accent flex items-center justify-center font-heading text-xl md:text-2xl font-bold text-accent bg-accent/5 shadow-sm">
                     {STORIES[active].initials}
                   </div>
                   <div>
-                    <h4 className="text-xl md:text-2xl font-bold text-white uppercase tracking-wider">{STORIES[active].name}</h4>
+                    <h4 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">{STORIES[active].name}</h4>
                     <div className="flex items-center gap-2 mt-1">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-3 h-3 md:w-4 md:h-4 fill-accent text-accent" />
@@ -198,17 +198,17 @@ export default function SuccessStories() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-8 md:gap-12 py-8 md:py-10 border-y border-white/5">
+                <div className="grid grid-cols-3 gap-8 md:gap-12 py-8 md:py-10 border-y border-card-border">
                   {Object.entries(STORIES[active].stats).map(([label, value]) => (
                     <div key={label} className="space-y-2">
                       <span className="text-[8px] md:text-xs font-bold tracking-[0.2em] uppercase text-text-secondary block">{label}</span>
-                      <div className="text-xl md:text-4xl font-bold text-white font-heading">{value}</div>
+                      <div className="text-xl md:text-4xl font-bold text-foreground font-heading">{value}</div>
                     </div>
                   ))}
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                   <button className="w-full md:w-auto bg-accent text-black px-8 py-4 font-bold tracking-widest uppercase hover:bg-accent-hover transition-all rounded-sm flex items-center justify-center gap-3 group shadow-[0_0_20px_rgba(0,255,136,0.2)]">
+                   <button className="w-full md:w-auto bg-accent text-black px-8 py-4 font-bold tracking-widest uppercase hover:bg-accent-hover transition-all rounded-sm flex items-center justify-center gap-3 group shadow-md">
                       JOIN THE MOVEMENT <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                    </button>
 
@@ -216,13 +216,13 @@ export default function SuccessStories() {
                       <div className="flex gap-4">
                         <button 
                           onClick={() => setActive((prev) => (prev === 0 ? STORIES.length - 1 : prev - 1))}
-                          className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-accent hover:text-black hover:border-accent transition-all group"
+                          className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-card-border flex items-center justify-center text-foreground hover:bg-accent hover:text-black hover:border-accent transition-all group glass shadow-sm"
                         >
                           <ArrowLeft className="w-6 h-6" />
                         </button>
                         <button 
                           onClick={() => setActive((prev) => (prev === STORIES.length - 1 ? 0 : prev + 1))}
-                          className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-accent hover:text-black hover:border-accent transition-all group"
+                          className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-card-border flex items-center justify-center text-foreground hover:bg-accent hover:text-black hover:border-accent transition-all group glass shadow-sm"
                         >
                           <ArrowRight className="w-6 h-6" />
                         </button>

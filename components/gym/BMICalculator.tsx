@@ -28,12 +28,12 @@ export default function BMICalculator() {
 
   const getStatusColor = () => {
     if (status === "Healthy") return "text-accent";
-    if (status === "Underweight") return "text-blue-400";
+    if (status === "Underweight") return "text-blue-500";
     return "text-red-500";
   };
 
   return (
-    <Section id="calculator" className="bg-card/30" showDivider>
+    <Section id="calculator" className="bg-foreground/[0.01]" showDivider>
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -mr-64 -mt-64" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -ml-64 -mb-64" />
@@ -46,8 +46,8 @@ export default function BMICalculator() {
             <Calculator className="w-4 h-4 text-accent" />
             <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase">Smart Tool</span>
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase tracking-tight">
-            CALCULATE YOUR <span className="text-accent">POTENTIAL</span>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase tracking-tight text-foreground">
+            CALCULATE YOUR <span className="text-accent italic">POTENTIAL</span>
           </h2>
         </div>
 
@@ -61,7 +61,7 @@ export default function BMICalculator() {
                 <span className="text-xl font-bold text-accent italic">{weight}</span>
               </div>
               <div className="relative h-4 flex items-center">
-                <div className="absolute w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div className="absolute w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
                   <motion.div 
                     className="h-full bg-gradient-to-r from-green-400 to-emerald-500"
                     animate={{ width: `${((weight - 40) / (150 - 40)) * 100}%` }}
@@ -74,7 +74,7 @@ export default function BMICalculator() {
                   value={weight}
                   onChange={(e) => setWeight(parseInt(e.target.value))}
                   className="absolute w-full appearance-none bg-transparent cursor-pointer z-10 outline-none
-                  [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-400 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(74,222,128,0.3)]"
+                  [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-md"
                 />
               </div>
             </div>
@@ -86,7 +86,7 @@ export default function BMICalculator() {
                 <span className="text-xl font-bold text-accent italic">{height}</span>
               </div>
               <div className="relative h-4 flex items-center">
-                <div className="absolute w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div className="absolute w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
                   <motion.div 
                     className="h-full bg-gradient-to-r from-green-400 to-emerald-500"
                     animate={{ width: `${((height - 140) / (220 - 140)) * 100}%` }}
@@ -99,7 +99,7 @@ export default function BMICalculator() {
                   value={height}
                   onChange={(e) => setHeight(parseInt(e.target.value))}
                   className="absolute w-full appearance-none bg-transparent cursor-pointer z-10 outline-none
-                  [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-400 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(74,222,128,0.3)]"
+                  [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-md"
                 />
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function BMICalculator() {
           {/* Results Card */}
           <motion.div
             layout
-            className="bg-background border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl relative overflow-hidden"
+            className="glass border border-card-border rounded-2xl p-6 md:p-10 shadow-sm relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-6 opacity-5">
               <Activity className="w-24 h-24 text-accent" />
@@ -122,7 +122,7 @@ export default function BMICalculator() {
                   key={bmi}
                   initial={{ scale: 0.9, filter: "blur(4px)" }}
                   animate={{ scale: 1, filter: "blur(0px)" }}
-                  className="text-6xl font-bold text-accent tracking-tighter drop-shadow-[0_0_15px_rgba(var(--accent-rgb),0.3)]"
+                  className="text-6xl font-bold text-accent tracking-tighter"
                 >
                   {bmi}
                 </motion.div>
@@ -133,26 +133,26 @@ export default function BMICalculator() {
 
               {/* Macro Recommendations */}
               <div className="grid grid-cols-3 gap-2 w-full md:w-auto">
-                <div className="bg-card/50 border border-white/5 p-3 rounded-xl text-center min-w-[80px]">
+                <div className="bg-card-border border border-card-border p-3 rounded-xl text-center min-w-[80px] shadow-sm">
                   <span className="text-[8px] font-bold tracking-widest uppercase text-text-secondary block mb-1">Protein</span>
-                  <div className="text-sm font-bold text-white">{macros.protein}g</div>
+                  <div className="text-sm font-bold text-foreground">{macros.protein}g</div>
                 </div>
-                <div className="bg-card/50 border border-white/5 p-3 rounded-xl text-center min-w-[80px]">
+                <div className="bg-card-border border border-card-border p-3 rounded-xl text-center min-w-[80px] shadow-sm">
                   <span className="text-[8px] font-bold tracking-widest uppercase text-text-secondary block mb-1">Carbs</span>
-                  <div className="text-sm font-bold text-white">{macros.carbs}g</div>
+                  <div className="text-sm font-bold text-foreground">{macros.carbs}g</div>
                 </div>
-                <div className="bg-card/50 border border-white/5 p-3 rounded-xl text-center min-w-[80px]">
+                <div className="bg-card-border border border-card-border p-3 rounded-xl text-center min-w-[80px] shadow-sm">
                   <span className="text-[8px] font-bold tracking-widest uppercase text-text-secondary block mb-1">Fats</span>
-                  <div className="text-sm font-bold text-white">{macros.fats}g</div>
+                  <div className="text-sm font-bold text-foreground">{macros.fats}g</div>
                 </div>
               </div>
             </div>
 
             {/* CTA Action */}
-            <div className="mt-8 pt-6 border-t border-white/5 flex flex-col items-center">
+            <div className="mt-8 pt-6 border-t border-card-border flex flex-col items-center">
               <a 
                 href="#pricing"
-                className="flex items-center justify-center gap-2 w-full bg-accent text-black font-bold tracking-widest uppercase py-4 rounded-lg hover:bg-accent-hover transition-all text-xs"
+                className="flex items-center justify-center gap-2 w-full bg-accent text-black font-bold tracking-widest uppercase py-4 rounded-lg hover:bg-accent-hover transition-all text-xs shadow-md"
               >
                 Get Your Plan <ArrowRight className="w-4 h-4" />
               </a>
