@@ -112,54 +112,54 @@ export default function Membership() {
         </AnimatePresence>
       </div>
 
-      <div className="bg-card border border-white/5 rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
-        <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 md:gap-12 w-full lg:w-auto">
-          <div className="flex items-center gap-4">
-            <Calendar className="w-10 h-10 text-accent" />
+      {/* Footer Benefits Section - Refactored for Screenshot Layout */}
+      <div className="bg-card border border-white/5 rounded-2xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
+        <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap justify-center lg:justify-start gap-10 md:gap-16 w-full lg:w-auto">
+          <div className="flex items-center gap-5">
+            <div className="w-14 h-14 rounded-full border border-accent/20 flex items-center justify-center shrink-0">
+              <Calendar className="w-7 h-7 text-accent" />
+            </div>
             <div>
-              <div className="font-bold text-sm tracking-widest uppercase">NO JOINING FEE</div>
-              <div className="text-text-secondary text-xs">Limited Time Offer</div>
+              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-white">NO JOINING FEE</div>
+              <div className="text-text-secondary text-sm">Limited Time Offer</div>
             </div>
           </div>
-          <div className="hidden md:block w-px h-12 bg-white/10" />
-          <div className="flex items-center gap-4">
-            <PauseCircle className="w-10 h-10 text-accent" />
+          
+          <div className="flex items-center gap-5">
+            <div className="w-14 h-14 rounded-full border border-accent/20 flex items-center justify-center shrink-0">
+              <PauseCircle className="w-7 h-7 text-accent" />
+            </div>
             <div>
-              <div className="font-bold text-sm tracking-widest uppercase">FREEZE YOUR PLAN</div>
-              <div className="text-text-secondary text-xs">Pause Anytime</div>
+              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-white">FREEZE YOUR PLAN</div>
+              <div className="text-text-secondary text-sm">Pause Anytime</div>
             </div>
           </div>
-          <div className="hidden md:block w-px h-12 bg-white/10" />
-          <div className="flex items-center gap-4">
-            <Users className="w-10 h-10 text-accent" />
+
+          <div className="flex items-center gap-5">
+            <div className="w-14 h-14 rounded-full border border-accent/20 flex items-center justify-center shrink-0">
+              <Users className="w-7 h-7 text-accent" />
+            </div>
             <div>
-              <div className="font-bold text-sm tracking-widest uppercase">BRING A FRIEND</div>
-              <div className="text-text-secondary text-xs">Get 10% OFF</div>
+              <div className="font-bold text-lg md:text-xl tracking-wider uppercase text-white">BRING A FRIEND</div>
+              <div className="text-text-secondary text-sm">Get 10% OFF</div>
             </div>
           </div>
         </div>
 
-        <div className="w-full lg:w-auto flex flex-col sm:flex-row items-center gap-6 bg-background/50 p-4 md:p-6 rounded-xl border border-white/5">
-          <div className="text-center sm:text-left">
-            <h4 className="font-bold tracking-widest uppercase">READY TO TRANSFORM?</h4>
-            <p className="text-text-secondary text-sm">Let&apos;s build your strongest version together.</p>
+        <div className="w-full lg:w-[400px] flex flex-col items-center gap-6 bg-black/40 p-8 lg:p-10 rounded-2xl border border-white/5 text-center">
+          <div>
+            <h4 className="font-bold text-xl tracking-[0.2em] uppercase text-white mb-2">READY TO TRANSFORM?</h4>
+            <p className="text-text-secondary text-sm leading-relaxed">Let&apos;s build your strongest version together.</p>
           </div>
           <button 
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-            className="bg-accent text-black px-8 py-3 font-bold tracking-widest text-sm hover:bg-accent-hover transition-colors rounded-sm uppercase flex items-center gap-2 whitespace-nowrap"
+            onClick={() => setIsModalOpen(true)}
+            className="w-full bg-accent text-black py-4 font-bold tracking-[0.2em] text-sm hover:bg-accent-hover transition-all rounded-lg uppercase flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,136,0.2)]"
           >
-            JOIN NOW <ArrowRight className="w-4 h-4" />
+            JOIN NOW <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 mt-8 text-text-secondary text-sm">
-        <ShieldCheck className="w-5 h-5 text-accent" />
-        <span className="font-bold">100% SATISFACTION GUARANTEE</span>
-        <span className="hidden sm:inline">- Not happy? We&apos;ll make it right.</span>
-      </div>
 
       <JoinModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>

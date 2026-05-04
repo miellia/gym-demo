@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Menu, Users, Dumbbell, Star, ChevronDown } from "lucide-react";
+import { ArrowRight, Menu, Users, Dumbbell, Star, ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import JoinModal from "./JoinModal";
@@ -22,7 +22,7 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Task 1: Disable Background Scroll
+  // Disable Background Scroll
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -34,7 +34,7 @@ export default function Hero() {
     };
   }, [isMobileMenuOpen]);
 
-  // Task 3 & 4: Animate Before Unmount
+  // Animate Before Unmount
   const toggleMobileMenu = () => {
     if (isMobileMenuOpen) {
       setIsClosing(true);
@@ -105,28 +105,41 @@ export default function Hero() {
         </div>
       </nav>
 
-      {/* Task 1-6: Sidebar Overlay Refactor */}
+      {/* Sidebar Overlay Refactor */}
       {isMobileMenuOpen && (
         <div 
-          className={`fixed inset-0 top-0 left-0 w-full h-screen z-[9999] bg-black/95 backdrop-blur-md flex flex-col px-10 py-24 gap-8 lg:hidden transition-all duration-300 ease-in-out ${
+          className={`fixed inset-0 top-0 left-0 w-full h-screen z-[9999] bg-black/95 backdrop-blur-md flex flex-col transition-all duration-300 ease-in-out ${
             isClosing ? '-translate-x-full opacity-0' : 'translate-x-0 opacity-100'
           }`}
         >
-          <a href="#home" onClick={toggleMobileMenu} className="text-white text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">HOME</a>
-          <a href="#about" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">ABOUT</a>
-          <a href="#trainers" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">TRAINERS</a>
-          <a href="#programs" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">PROGRAMS</a>
-          <a href="#pricing" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">PRICING</a>
-          <a href="#contact" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">CONTACT</a>
-          <button 
-            onClick={() => {
-              toggleMobileMenu();
-              setIsModalOpen(true);
-            }}
-            className="mt-8 flex items-center justify-center gap-3 bg-accent text-black px-6 py-5 font-bold rounded-sm text-sm w-full tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(0,255,136,0.3)]"
-          >
-            JOIN NOW <ArrowRight className="w-5 h-5" />
-          </button>
+          {/* Closing Burger inside Sidebar */}
+          <div className="absolute top-5 right-6 z-[10000]">
+            <button 
+              onClick={toggleMobileMenu} 
+              className="text-white p-2 hover:bg-white/5 rounded-full transition-colors"
+            >
+              <Menu className="w-8 h-8" />
+            </button>
+          </div>
+
+          {/* Internal Scrollable Content */}
+          <div className="flex-1 overflow-y-auto px-10 py-24 flex flex-col gap-8 scrollbar-hide">
+            <a href="#home" onClick={toggleMobileMenu} className="text-white text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">HOME</a>
+            <a href="#about" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">ABOUT</a>
+            <a href="#trainers" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">TRAINERS</a>
+            <a href="#programs" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">PROGRAMS</a>
+            <a href="#pricing" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">PRICING</a>
+            <a href="#contact" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">CONTACT</a>
+            <button 
+              onClick={() => {
+                toggleMobileMenu();
+                setIsModalOpen(true);
+              }}
+              className="mt-8 flex items-center justify-center gap-3 bg-accent text-black px-6 py-5 font-bold rounded-sm text-sm w-full tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(0,255,136,0.3)]"
+            >
+              JOIN NOW <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       )}
 
