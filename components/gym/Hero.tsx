@@ -206,6 +206,27 @@ export default function Hero() {
       </div>
       
       <JoinModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+      {/* Floating Free Pass Button (Lead Magnet) */}
+      <AnimatePresence>
+        {isScrolled && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5, x: 100 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, scale: 0.5, x: 100 }}
+            onClick={() => setIsModalOpen(true)}
+            className="fixed bottom-8 right-8 z-[100] bg-accent text-black font-bold py-4 px-6 rounded-full shadow-[0_0_20px_rgba(var(--accent-rgb),0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group"
+          >
+            <div className="flex flex-col items-start leading-none">
+              <span className="text-[10px] uppercase tracking-widest opacity-70">Claim your</span>
+              <span className="text-sm uppercase tracking-wider">Free Day Pass</span>
+            </div>
+            <div className="w-10 h-10 bg-black/10 rounded-full flex items-center justify-center group-hover:bg-black/20 transition-colors">
+              <ArrowRight className="w-5 h-5" />
+            </div>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

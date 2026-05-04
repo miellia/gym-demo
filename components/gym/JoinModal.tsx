@@ -110,7 +110,7 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean; onClos
                     <div className="space-y-2">
                       <label className="text-xs font-bold tracking-widest uppercase text-text-secondary">Select Plan (Optional)</label>
                       <select className="w-full bg-background border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-accent transition-colors appearance-none">
-                        <option value="">I'm not sure yet</option>
+                        <option value="">I&apos;m not sure yet</option>
                         <option value="basic">Basic Plan ($99/mo)</option>
                         <option value="pro">Pro Plan ($199/mo)</option>
                         <option value="elite">Elite Plan ($299/mo)</option>

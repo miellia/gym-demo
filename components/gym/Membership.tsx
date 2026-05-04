@@ -153,10 +153,12 @@ export default function Membership() {
         <div className="w-full lg:w-auto flex flex-col sm:flex-row items-center gap-6 bg-background/50 p-4 md:p-6 rounded-xl border border-white/5">
           <div className="text-center sm:text-left">
             <h4 className="font-bold tracking-widest uppercase">READY TO TRANSFORM?</h4>
-            <p className="text-text-secondary text-sm">Join today and become your best self.</p>
+            <p className="text-text-secondary text-sm">Let&apos;s build your strongest version together.</p>
           </div>
           <button 
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
             className="bg-accent text-black px-8 py-3 font-bold tracking-widest text-sm hover:bg-accent-hover transition-colors rounded-sm uppercase flex items-center gap-2 whitespace-nowrap"
           >
             JOIN NOW <ArrowRight className="w-4 h-4" />
@@ -167,7 +169,7 @@ export default function Membership() {
       <div className="flex items-center justify-center gap-2 mt-8 text-text-secondary text-sm">
         <ShieldCheck className="w-5 h-5 text-accent" />
         <span className="font-bold">100% SATISFACTION GUARANTEE</span>
-        <span className="hidden sm:inline">- Not happy? We'll make it right.</span>
+        <span className="hidden sm:inline">- Not happy? We&apos;ll make it right.</span>
       </div>
 
       <JoinModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
@@ -175,7 +177,7 @@ export default function Membership() {
   );
 }
 
-function StarIcon(props: any) {
+function StarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />

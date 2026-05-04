@@ -60,9 +60,12 @@ export default function CTAFooter() {
               >
                 JOIN NOW <ArrowRight className="w-4 h-4" />
               </button>
-              <a href="#contact" className="flex items-center justify-center gap-2 border border-accent text-accent px-8 py-4 font-bold hover:bg-accent/10 transition-colors rounded-sm text-sm uppercase">
-                SCHEDULE A TOUR <Calendar className="w-4 h-4" />
-              </a>
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="flex items-center justify-center gap-2 border border-accent text-accent px-8 py-4 font-bold hover:bg-accent/10 transition-colors rounded-sm text-sm uppercase"
+              >
+                CLAIM FREE PASS <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
 
@@ -80,7 +83,7 @@ export default function CTAFooter() {
             <div className="absolute -bottom-8 -right-4 md:right-8 bg-card border border-white/5 p-6 rounded-2xl max-w-xs shadow-2xl backdrop-blur-md">
               <Quote className="w-8 h-8 text-accent mb-4" />
               <p className="text-white text-lg font-medium leading-relaxed">
-                "The only bad workout is the one that <span className="text-accent">didn't happen.</span>"
+                &ldquo;The only bad workout is the one that <span className="text-accent">didn&apos;t happen.</span>&rdquo;
               </p>
             </div>
           </div>
@@ -146,7 +149,7 @@ export default function CTAFooter() {
                 <span className="font-heading text-2xl tracking-wider font-bold italic">FUELFIT</span>
               </div>
               <p className="text-text-secondary mb-6 leading-relaxed">
-                More than a gym. It's a lifestyle. Join a community that inspires, motivates and transforms.
+                More than a gym. It&apos;s a lifestyle. Join a community that inspires, motivates and transforms.
               </p>
               <div className="flex items-center gap-4">
                 <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors text-white">

@@ -13,8 +13,23 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  title: "FuelFit Gym",
-  description: "Build your strongest body with FuelFit Gym",
+  title: "FuelFit | Premium Luxury Gym & Fitness Center",
+  description: "Transform your body at FuelFit. Expert trainers, world-class equipment, and a community dedicated to your success. Join the movement today.",
+  keywords: ["gym", "fitness", "bodybuilding", "personal training", "weight loss", "luxury gym"],
+  openGraph: {
+    title: "FuelFit | Premium Luxury Gym & Fitness Center",
+    description: "Transform your body at FuelFit. Expert trainers, world-class equipment, and a community dedicated to your success.",
+    type: "website",
+    url: "https://fuelfit.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "FuelFit Gym",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
