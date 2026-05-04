@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, Dumbbell, Mail, Phone, User, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-export default function JoinModal({ isOpen, onClose }: { isOpen, onClose: () => void }) {
+export default function JoinModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
