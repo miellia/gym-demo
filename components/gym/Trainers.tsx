@@ -49,7 +49,7 @@ export default function Trainers() {
   };
 
   return (
-    <Section id="trainers" showDivider>
+    <Section id="trainers" showDivider variant="subtle">
       <div className="text-center mb-16">
         <div className="flex items-center justify-center gap-4 mb-4">
           <div className="w-12 h-px bg-accent/50" />

@@ -34,7 +34,7 @@ export default function Testimonials() {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <Section id="about" showDivider>
+    <Section id="about" showDivider variant="subtle">
       <div className="flex flex-col items-center mb-16 text-center">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-12 h-px bg-accent/50" />

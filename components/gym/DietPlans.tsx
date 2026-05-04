@@ -49,7 +49,7 @@ export default function DietPlans() {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + plans.length) % plans.length);
 
   return (
-    <Section id="programs" showDivider>
+    <Section id="programs" showDivider variant="subtle">
       <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 mb-16 text-center lg:text-left">
         <div className="max-w-2xl flex flex-col items-center lg:items-start">
           <div className="flex items-center gap-4 mb-4">
