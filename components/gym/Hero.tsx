@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Menu, Users, Dumbbell, Star, ChevronDown, X } from "lucide-react";
+import { ArrowRight, Menu, Users, Dumbbell, Star, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import JoinModal from "./JoinModal";
@@ -11,6 +11,7 @@ export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +21,31 @@ export default function Hero() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Task 1: Disable Background Scroll
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Task 3 & 4: Animate Before Unmount
+  const toggleMobileMenu = () => {
+    if (isMobileMenuOpen) {
+      setIsClosing(true);
+      setTimeout(() => {
+        setIsMobileMenuOpen(false);
+        setIsClosing(false);
+      }, 300);
+    } else {
+      setIsMobileMenuOpen(true);
+    }
+  };
 
   return (
     <section className="relative min-h-screen bg-background overflow-hidden flex flex-col">
@@ -46,7 +72,7 @@ export default function Hero() {
             : 'absolute bg-transparent py-5'
         }`}
       >
-        <a href="#home" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <a href="#home" className="flex items-center gap-2 hover:opacity-80 transition-opacity relative z-50">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-accent">
             <path d="M10 28L18 4H26L18 28H10Z" fill="currentColor" />
             <path d="M2 28L10 4H18L10 28H2Z" fill="currentColor" />
@@ -70,39 +96,39 @@ export default function Hero() {
           >
             JOIN NOW <ArrowRight className="w-4 h-4" />
           </button>
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden text-white relative z-50">
-            {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          <button 
+            onClick={toggleMobileMenu} 
+            className="lg:hidden text-white relative z-[9999] p-2 hover:bg-white/5 rounded-full transition-colors"
+          >
+            <Menu className="w-8 h-8" />
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 w-full bg-[rgba(11,11,11,0.95)] backdrop-blur-xl border-b border-white/10 flex flex-col px-6 py-8 gap-6 z-40 lg:hidden shadow-2xl"
-            >
-              <a href="#home" onClick={() => setIsMobileMenuOpen(false)} className="text-white text-lg font-bold tracking-widest uppercase">HOME</a>
-              <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-text-secondary hover:text-white transition-colors text-lg font-bold tracking-widest uppercase">ABOUT</a>
-              <a href="#trainers" onClick={() => setIsMobileMenuOpen(false)} className="text-text-secondary hover:text-white transition-colors text-lg font-bold tracking-widest uppercase">TRAINERS</a>
-              <a href="#programs" onClick={() => setIsMobileMenuOpen(false)} className="text-text-secondary hover:text-white transition-colors text-lg font-bold tracking-widest uppercase">PROGRAMS</a>
-              <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-text-secondary hover:text-white transition-colors text-lg font-bold tracking-widest uppercase">PRICING</a>
-              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-text-secondary hover:text-white transition-colors text-lg font-bold tracking-widest uppercase">CONTACT</a>
-              <button 
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setIsModalOpen(true);
-                }}
-                className="mt-4 flex items-center justify-center gap-2 bg-accent text-black px-6 py-4 font-bold rounded-sm text-sm w-full"
-              >
-                JOIN NOW <ArrowRight className="w-4 h-4" />
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </nav>
+
+      {/* Task 1-6: Sidebar Overlay Refactor */}
+      {isMobileMenuOpen && (
+        <div 
+          className={`fixed inset-0 top-0 left-0 w-full h-screen z-[9999] bg-black/95 backdrop-blur-md flex flex-col px-10 py-24 gap-8 lg:hidden transition-all duration-300 ease-in-out ${
+            isClosing ? '-translate-x-full opacity-0' : 'translate-x-0 opacity-100'
+          }`}
+        >
+          <a href="#home" onClick={toggleMobileMenu} className="text-white text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">HOME</a>
+          <a href="#about" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">ABOUT</a>
+          <a href="#trainers" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">TRAINERS</a>
+          <a href="#programs" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">PROGRAMS</a>
+          <a href="#pricing" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">PRICING</a>
+          <a href="#contact" onClick={toggleMobileMenu} className="text-text-secondary hover:text-white transition-colors text-3xl font-heading font-bold tracking-[0.2em] uppercase border-b border-white/5 pb-4">CONTACT</a>
+          <button 
+            onClick={() => {
+              toggleMobileMenu();
+              setIsModalOpen(true);
+            }}
+            className="mt-8 flex items-center justify-center gap-3 bg-accent text-black px-6 py-5 font-bold rounded-sm text-sm w-full tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(0,255,136,0.3)]"
+          >
+            JOIN NOW <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      )}
 
       {/* Hero Content */}
       <div className="relative z-20 flex-1 flex flex-col justify-center px-6 lg:px-12 pt-32 lg:pt-40 pb-12 md:pb-0">
@@ -149,35 +175,33 @@ export default function Hero() {
 
       {/* Stats Bar */}
       <div className="relative z-20 px-6 lg:px-12 pb-12 w-full max-w-[1400px] mx-auto">
-        <div className="bg-card/80 backdrop-blur-md border border-white/5 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4">
+        <div className="bg-card/80 backdrop-blur-md border border-white/5 rounded-2xl p-4 md:p-8 grid grid-cols-3 md:flex md:flex-row justify-between items-center gap-2 md:gap-4">
           
-          <div className="flex md:flex-row flex-col items-center gap-2 md:gap-4 w-full md:w-1/3 justify-center md:justify-start text-center md:text-left">
-            <Users className="w-8 h-8 md:w-10 md:h-10 text-accent" />
-            <div>
-              <div className="font-heading text-3xl md:text-4xl font-bold">500+</div>
-              <div className="text-text-secondary text-xs font-medium tracking-widest uppercase">HAPPY MEMBERS</div>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 justify-center md:justify-start text-center md:text-left">
+            <Users className="w-6 h-6 md:w-10 md:h-10 text-accent" />
+            <div className="flex flex-col">
+              <div className="font-heading text-xl md:text-4xl font-bold">500+</div>
+              <div className="text-text-secondary text-[8px] md:text-xs font-medium tracking-widest uppercase">MEMBERS</div>
             </div>
           </div>
           
           <div className="hidden md:block w-px h-16 bg-white/10" />
-          <div className="w-16 h-px bg-white/10 md:hidden" />
 
-          <div className="flex md:flex-row flex-col items-center gap-2 md:gap-4 w-full md:w-1/3 justify-center text-center md:text-left">
-            <Dumbbell className="w-8 h-8 md:w-10 md:h-10 text-accent" />
-            <div>
-              <div className="font-heading text-3xl md:text-4xl font-bold">20+</div>
-              <div className="text-text-secondary text-xs font-medium tracking-widest uppercase">EXPERT TRAINERS</div>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 justify-center text-center md:text-left">
+            <Dumbbell className="w-6 h-6 md:w-10 md:h-10 text-accent" />
+            <div className="flex flex-col">
+              <div className="font-heading text-xl md:text-4xl font-bold">250+</div>
+              <div className="text-text-secondary text-[8px] md:text-xs font-medium tracking-widest uppercase">REVIEWS</div>
             </div>
           </div>
 
           <div className="hidden md:block w-px h-16 bg-white/10" />
-          <div className="w-16 h-px bg-white/10 md:hidden" />
 
-          <div className="flex md:flex-row flex-col items-center gap-2 md:gap-4 w-full md:w-1/3 justify-center md:justify-end text-center md:text-left">
-            <Star className="w-8 h-8 md:w-10 md:h-10 text-accent" />
-            <div>
-              <div className="font-heading text-3xl md:text-4xl font-bold">4.9</div>
-              <div className="text-text-secondary text-xs font-medium tracking-widest uppercase">MEMBER RATING</div>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 justify-center md:justify-end text-center md:text-left">
+            <Star className="w-6 h-6 md:w-10 md:h-10 text-accent" />
+            <div className="flex flex-col">
+              <div className="font-heading text-xl md:text-4xl font-bold">4.9</div>
+              <div className="text-text-secondary text-[8px] md:text-xs font-medium tracking-widest uppercase">RATING</div>
             </div>
           </div>
 

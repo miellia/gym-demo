@@ -32,131 +32,138 @@ export default function BMICalculator() {
   };
 
   return (
-    <section className="py-24 bg-card/30 relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-card/30 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -mr-64 -mt-64" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -ml-64 -mb-64" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-2xl mx-auto flex flex-col items-center">
           
-          {/* Left: Input Controls */}
-          <div className="w-full lg:w-1/2 space-y-12">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-2 mb-4"
-              >
-                <Calculator className="w-5 h-5 text-accent" />
-                <span className="text-accent text-sm font-bold tracking-widest uppercase">Smart Calculator</span>
-              </motion.div>
-              <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-6">
-                Calculate Your <span className="text-stroke">Potential</span>
-              </h2>
-              <p className="text-text-secondary text-lg max-w-xl">
-                Get instant feedback on your BMI and suggested daily macros to help you choose the right training plan.
-              </p>
-            </div>
+          {/* Header */}
+          <div className="text-center mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center gap-2 mb-3"
+            >
+              <Calculator className="w-4 h-4 text-accent" />
+              <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase">Smart Tool</span>
+            </motion.div>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase tracking-tight">
+              CALCULATE YOUR <span className="text-accent">POTENTIAL</span>
+            </h2>
+          </div>
 
+          <div className="w-full space-y-10">
+            {/* Input Controls */}
             <div className="space-y-8">
               {/* Weight Slider */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-bold tracking-widest uppercase text-text-secondary">Weight (kg)</label>
-                  <span className="text-2xl font-bold text-white">{weight}</span>
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-text-secondary">Weight (kg)</label>
+                  <span className="text-xl font-bold text-accent italic">{weight}</span>
                 </div>
-                <input
-                  type="range"
-                  min="40"
-                  max="150"
-                  value={weight}
-                  onChange={(e) => setWeight(parseInt(e.target.value))}
-                  className="w-full h-2 bg-background rounded-lg appearance-none cursor-pointer accent-accent"
-                />
+                <div className="relative h-4 flex items-center">
+                  <div className="absolute w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-gradient-to-r from-green-400 to-emerald-500"
+                      animate={{ width: `${((weight - 40) / (150 - 40)) * 100}%` }}
+                    />
+                  </div>
+                  <input
+                    type="range"
+                    min="40"
+                    max="150"
+                    value={weight}
+                    onChange={(e) => setWeight(parseInt(e.target.value))}
+                    className="absolute w-full appearance-none bg-transparent cursor-pointer z-10 outline-none
+                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-400 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(74,222,128,0.3)]"
+                  />
+                </div>
               </div>
 
               {/* Height Slider */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-bold tracking-widest uppercase text-text-secondary">Height (cm)</label>
-                  <span className="text-2xl font-bold text-white">{height}</span>
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-text-secondary">Height (cm)</label>
+                  <span className="text-xl font-bold text-accent italic">{height}</span>
                 </div>
-                <input
-                  type="range"
-                  min="140"
-                  max="220"
-                  value={height}
-                  onChange={(e) => setHeight(parseInt(e.target.value))}
-                  className="w-full h-2 bg-background rounded-lg appearance-none cursor-pointer accent-accent"
-                />
+                <div className="relative h-4 flex items-center">
+                  <div className="absolute w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-gradient-to-r from-green-400 to-emerald-500"
+                      animate={{ width: `${((height - 140) / (220 - 140)) * 100}%` }}
+                    />
+                  </div>
+                  <input
+                    type="range"
+                    min="140"
+                    max="220"
+                    value={height}
+                    onChange={(e) => setHeight(parseInt(e.target.value))}
+                    className="absolute w-full appearance-none bg-transparent cursor-pointer z-10 outline-none
+                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-400 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(74,222,128,0.3)]"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right: Results Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="w-full lg:w-1/2"
-          >
-            <div className="bg-background border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Activity className="w-32 h-32 text-accent" />
+            {/* Results Card */}
+            <motion.div
+              layout
+              className="bg-background border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 p-6 opacity-5">
+                <Activity className="w-24 h-24 text-accent" />
               </div>
 
-              <div className="relative z-10 space-y-12">
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                 {/* BMI Score */}
-                <div className="text-center space-y-2">
-                  <span className="text-xs font-bold tracking-[0.3em] uppercase text-text-secondary">Your BMI Score</span>
-                  <div className="text-7xl md:text-8xl font-bold text-accent tracking-tighter">
+                <div className="text-center md:text-left space-y-1">
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-text-secondary">Your BMI Score</span>
+                  <motion.div 
+                    key={bmi}
+                    initial={{ scale: 0.9, filter: "blur(4px)" }}
+                    animate={{ scale: 1, filter: "blur(0px)" }}
+                    className="text-6xl font-bold text-accent tracking-tighter drop-shadow-[0_0_15px_rgba(var(--accent-rgb),0.3)]"
+                  >
                     {bmi}
-                  </div>
-                  <div className={`text-xl font-bold uppercase tracking-widest ${getStatusColor()}`}>
+                  </motion.div>
+                  <div className={`text-sm font-bold uppercase tracking-[0.2em] ${getStatusColor()}`}>
                     {status}
                   </div>
                 </div>
 
                 {/* Macro Recommendations */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="bg-card/50 border border-white/5 p-4 rounded-2xl text-center space-y-1">
-                    <span className="text-[10px] font-bold tracking-widest uppercase text-text-secondary">Protein</span>
-                    <div className="text-xl font-bold text-white">{macros.protein}g</div>
+                <div className="grid grid-cols-3 gap-2 w-full md:w-auto">
+                  <div className="bg-card/50 border border-white/5 p-3 rounded-xl text-center min-w-[80px]">
+                    <span className="text-[8px] font-bold tracking-widest uppercase text-text-secondary block mb-1">Protein</span>
+                    <div className="text-sm font-bold text-white">{macros.protein}g</div>
                   </div>
-                  <div className="bg-card/50 border border-white/5 p-4 rounded-2xl text-center space-y-1">
-                    <span className="text-[10px] font-bold tracking-widest uppercase text-text-secondary">Carbs</span>
-                    <div className="text-xl font-bold text-white">{macros.carbs}g</div>
+                  <div className="bg-card/50 border border-white/5 p-3 rounded-xl text-center min-w-[80px]">
+                    <span className="text-[8px] font-bold tracking-widest uppercase text-text-secondary block mb-1">Carbs</span>
+                    <div className="text-sm font-bold text-white">{macros.carbs}g</div>
                   </div>
-                  <div className="bg-card/50 border border-white/5 p-4 rounded-2xl text-center space-y-1">
-                    <span className="text-[10px] font-bold tracking-widest uppercase text-text-secondary">Fats</span>
-                    <div className="text-xl font-bold text-white">{macros.fats}g</div>
+                  <div className="bg-card/50 border border-white/5 p-3 rounded-xl text-center min-w-[80px]">
+                    <span className="text-[8px] font-bold tracking-widest uppercase text-text-secondary block mb-1">Fats</span>
+                    <div className="text-sm font-bold text-white">{macros.fats}g</div>
                   </div>
-                </div>
-
-                {/* Conversion Hook */}
-                <div className="pt-6 border-t border-white/5">
-                  <div className="flex items-start gap-4 mb-8">
-                    <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Target className="w-5 h-5 text-accent" />
-                    </div>
-                    <div>
-                      <p className="text-white font-bold mb-1">Recommended Goal</p>
-                      <p className="text-text-secondary text-sm">Based on your metrics, we suggest the <span className="text-accent font-bold">Pro Transformation</span> plan.</p>
-                    </div>
-                  </div>
-
-                  <a 
-                    href="#pricing"
-                    className="flex items-center justify-center gap-2 w-full bg-accent text-black font-bold tracking-widest uppercase py-5 rounded-xl hover:bg-accent-hover transition-all transform hover:scale-[1.02]"
-                  >
-                    View Recommended Plans <ArrowRight className="w-5 h-5" />
-                  </a>
                 </div>
               </div>
-            </div>
-          </motion.div>
+
+              {/* CTA Action */}
+              <div className="mt-8 pt-6 border-t border-white/5 flex flex-col items-center">
+                <a 
+                  href="#pricing"
+                  className="flex items-center justify-center gap-2 w-full bg-accent text-black font-bold tracking-widest uppercase py-4 rounded-lg hover:bg-accent-hover transition-all text-xs"
+                >
+                  Get Your Plan <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
 
         </div>
       </div>

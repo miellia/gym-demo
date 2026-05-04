@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { Star, Quote, ChevronRight, ChevronLeft } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
@@ -25,10 +26,14 @@ const testimonials = [
   }
 ];
 
-
 export default function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
   return (
-    <section className="py-24 bg-background px-6 lg:px-12 max-w-[1400px] mx-auto">
+    <section className="py-24 bg-background px-6 lg:px-12 max-w-[1400px] mx-auto overflow-hidden">
       <div className="flex flex-col items-center mb-16 text-center">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-12 h-px bg-accent/50" />
@@ -41,77 +46,133 @@ export default function Testimonials() {
         <p className="text-text-secondary">Transformations that speak for themselves.</p>
 
         {/* Top Stats */}
-        <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-12 bg-card border border-white/5 px-8 md:px-12 py-6 rounded-2xl">
-          <div className="flex items-center gap-4">
-            <Star className="w-8 h-8 text-accent fill-accent" />
-            <div className="text-left">
-              <div className="font-heading text-3xl font-bold">4.9</div>
-              <div className="text-[10px] text-text-secondary font-bold tracking-widest uppercase">AVERAGE RATING</div>
+        <div className="grid grid-cols-3 md:flex md:justify-center gap-4 md:gap-16 mt-12 bg-card border border-white/5 px-4 md:px-12 py-6 rounded-2xl w-full">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <Star className="w-6 h-6 md:w-8 md:h-8 text-accent fill-accent" />
+            <div className="text-center md:text-left">
+              <div className="font-heading text-xl md:text-3xl font-bold">4.9</div>
+              <div className="text-[8px] md:text-[10px] text-text-secondary font-bold tracking-widest uppercase">RATING</div>
             </div>
           </div>
           <div className="hidden md:block w-px h-12 bg-white/10" />
-          <div className="flex items-center gap-4">
-            <Quote className="w-8 h-8 text-accent fill-accent rotate-180" />
-            <div className="text-left">
-              <div className="font-heading text-3xl font-bold">250+</div>
-              <div className="text-[10px] text-text-secondary font-bold tracking-widest uppercase">REVIEWS</div>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <Quote className="w-6 h-6 md:w-8 md:h-8 text-accent fill-accent rotate-180" />
+            <div className="text-center md:text-left">
+              <div className="font-heading text-xl md:text-3xl font-bold">250+</div>
+              <div className="text-[8px] md:text-[10px] text-text-secondary font-bold tracking-widest uppercase">REVIEWS</div>
             </div>
           </div>
           <div className="hidden md:block w-px h-12 bg-white/10" />
-          <div className="flex items-center gap-4">
-            <div className="text-accent font-heading text-3xl font-bold flex">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-2">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <div className="text-accent font-heading text-xl md:text-3xl font-bold flex">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="md:w-8 md:h-8">
                 <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/>
               </svg>
             </div>
-            <div className="text-left">
-              <div className="font-heading text-3xl font-bold">500+</div>
-              <div className="text-[10px] text-text-secondary font-bold tracking-widest uppercase">HAPPY MEMBERS</div>
+            <div className="text-center md:text-left">
+              <div className="font-heading text-xl md:text-3xl font-bold">500+</div>
+              <div className="text-[8px] md:text-[10px] text-text-secondary font-bold tracking-widest uppercase">MEMBERS</div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="relative flex items-center justify-center gap-6 mb-20">
-        <button className="hidden lg:flex w-12 h-12 rounded-full border border-white/20 items-center justify-center hover:border-accent hover:text-accent transition-colors absolute left-0 z-10 -translate-x-1/2 bg-background">
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-          {testimonials.map((t, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col relative"
-            >
-              <Quote className="w-10 h-10 text-accent mb-6" />
-              <p className="text-text-secondary mb-10 flex-1 leading-relaxed text-sm md:text-base">
-                {t.text}
-              </p>
-              
-              <div className="flex items-center gap-4">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
-                  <Image src={t.image} alt={t.name} fill className="object-cover" />
+      
+      {/* Desktop Grid View (lg+) */}
+      <div className="hidden lg:grid lg:grid-cols-3 gap-6 w-full">
+        {testimonials.map((t, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col relative"
+          >
+            <Quote className="w-10 h-10 text-accent mb-6" />
+            <p className="text-text-secondary mb-10 flex-1 leading-relaxed text-base">
+              &quot;{t.text}&quot;
+            </p>
+            
+            <div className="flex items-center gap-4">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
+                <Image src={t.image} alt={t.name} fill className="object-cover" />
+              </div>
+              <div>
+                <h4 className="font-bold tracking-wide uppercase">{t.name}</h4>
+                <p className="text-accent text-xs font-bold uppercase tracking-widest">{t.goal}</p>
+                <div className="flex gap-1 mt-1">
+                  {[1,2,3,4,5].map((star) => <Star key={star} className="w-3 h-3 text-accent fill-accent" />)}
                 </div>
-                <div>
-                  <h4 className="font-bold tracking-wide uppercase">{t.name}</h4>
-                  <p className="text-text-secondary text-xs">{t.goal}</p>
-                  <div className="flex gap-1 mt-1">
-                    {[1,2,3,4,5].map((star) => <Star key={star} className="w-3 h-3 text-accent fill-accent" />)}
+              </div>
+              <Quote className="w-16 h-16 text-white/5 absolute bottom-6 right-6 rotate-180" />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Mobile Carousel View (< lg) */}
+      <div className="lg:hidden relative">
+        <div className="relative max-w-4xl mx-auto flex items-center justify-center">
+          {/* Navigation Arrows */}
+          <button 
+            onClick={prev}
+            className="absolute -left-2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="w-full relative min-h-[380px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.4 }}
+                className="bg-card p-8 rounded-2xl border border-white/5 relative w-full"
+              >
+                <Quote className="w-10 h-10 text-accent mb-8" />
+                <p className="text-text-secondary text-base mb-12 leading-relaxed italic">
+                  &quot;{testimonials[currentIndex].text}&quot;
+                </p>
+                
+                <div className="flex items-center gap-6">
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
+                    <Image src={testimonials[currentIndex].image} alt={testimonials[currentIndex].name} fill className="object-cover" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading text-lg font-bold tracking-wider uppercase">{testimonials[currentIndex].name}</h4>
+                    <p className="text-accent text-xs font-bold uppercase tracking-widest">{testimonials[currentIndex].goal}</p>
+                    <div className="flex gap-1 mt-2">
+                      {[1,2,3,4,5].map((star) => <Star key={star} className="w-3 h-3 text-accent fill-accent" />)}
+                    </div>
                   </div>
                 </div>
-                <Quote className="w-16 h-16 text-white/5 absolute bottom-6 right-6 rotate-180" />
-              </div>
-            </motion.div>
-          ))}
+                <Quote className="w-20 h-20 text-white/5 absolute bottom-8 right-8 rotate-180" />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <button 
+            onClick={next}
+            className="absolute -right-2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
 
-        <button className="hidden lg:flex w-12 h-12 rounded-full border border-white/20 items-center justify-center hover:border-accent hover:text-accent transition-colors absolute right-0 z-10 translate-x-1/2 bg-background">
-          <ChevronRight className="w-6 h-6" />
-        </button>
+        {/* Dots Indicator */}
+        <div className="flex justify-center gap-3 mt-12">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-2 transition-all rounded-full ${currentIndex === i ? 'w-8 bg-accent' : 'w-2 bg-white/20'}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

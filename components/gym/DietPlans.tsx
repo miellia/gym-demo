@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { CheckCircle2, ClipboardList, TrendingUp, Users, ArrowRight, Target, Apple, Leaf } from "lucide-react";
-import { motion } from "framer-motion";
+import { CheckCircle2, ClipboardList, TrendingUp, Users, ArrowRight, Target, Apple, Leaf, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import Link from "next/link";
 
-const plans = [
+export const plans = [
   {
     title: "MUSCLE GAIN",
     subtitle: "High Protein Plan",
@@ -40,10 +42,15 @@ const plans = [
 ];
 
 export default function DietPlans() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = () => setCurrentIndex((prev) => (prev + 1) % plans.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + plans.length) % plans.length);
+
   return (
     <section className="py-24 bg-background px-6 lg:px-12 max-w-[1400px] mx-auto">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
-        <div className="max-w-2xl">
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 mb-16 text-center lg:text-left">
+        <div className="max-w-2xl flex flex-col items-center lg:items-start">
           <div className="flex items-center gap-4 mb-4">
             <p className="text-accent font-bold tracking-widest text-sm uppercase">EAT RIGHT. FUEL YOUR TRANSFORMATION.</p>
             <div className="w-12 h-px bg-accent/50 hidden md:block" />
@@ -87,71 +94,67 @@ export default function DietPlans() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 relative">
-        {/* Large Decorative Image in Background on Desktop */}
-        <div className="hidden lg:block absolute -right-24 -top-64 w-[500px] h-[500px] rounded-full overflow-hidden opacity-20 pointer-events-none blur-sm z-0">
+      {/* Desktop Grid View (lg+) */}
+      <div className="hidden lg:grid lg:grid-cols-4 gap-6 mb-12 relative">
+        <div className="absolute -right-24 -top-64 w-[500px] h-[500px] rounded-full overflow-hidden opacity-20 pointer-events-none blur-sm z-0">
           <Image src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1453&auto=format&fit=crop" alt="Food background" fill className="object-cover" />
         </div>
 
         {plans.map((plan, i) => (
-          <motion.div 
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className={`bg-card rounded-2xl border ${plan.popular ? 'border-accent' : 'border-white/5'} p-6 flex flex-col relative z-10`}
-          >
-            {plan.popular && (
-              <div className="absolute -top-3 right-6 bg-accent text-black text-[10px] font-bold tracking-widest px-3 py-1 rounded-sm uppercase">
-                POPULAR
-              </div>
-            )}
-            
-            <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-background mb-6 shadow-2xl mx-auto max-w-[200px]">
-              <Image src={plan.image} alt={plan.title} fill className="object-cover" />
-              <div className="absolute top-2 left-2 w-8 h-8 rounded-full border border-accent bg-card/80 backdrop-blur-sm flex items-center justify-center">
-                <plan.icon className="w-4 h-4 text-accent" />
-              </div>
-            </div>
-
-            <h3 className="font-heading text-3xl font-bold tracking-wide mt-2">{plan.title}</h3>
-            <p className="text-accent text-sm font-medium mb-6">{plan.subtitle}</p>
-
-            <ul className="space-y-4 mb-8 flex-1">
-              {plan.features.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-sm text-text-secondary">
-                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-
-            <button className={`w-full py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm flex items-center justify-center gap-2 ${plan.popular ? 'bg-accent text-black hover:bg-accent-hover' : 'border border-accent text-accent hover:bg-accent/10'}`}>
-              VIEW PLAN <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
+          <DietPlanCard key={i} plan={plan} index={i} />
         ))}
-        
-        {/* Mobile-only meal plan includes */}
-        <div className="lg:hidden bg-card border border-white/5 rounded-2xl p-6 mt-6 col-span-1 md:col-span-2 flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
-           <div className="flex items-center gap-4">
-             <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-             </div>
-             <div>
-               <h4 className="font-bold uppercase tracking-widest text-sm">MEAL PLAN</h4>
-               <p className="text-accent font-bold text-sm tracking-widest">INCLUDES</p>
-             </div>
-           </div>
-           <div className="flex flex-col gap-3">
-             <div className="flex items-center gap-3 text-sm text-text-secondary"><ClipboardList className="w-4 h-4 text-white" /> Custom Meal Plan</div>
-             <div className="flex items-center gap-3 text-sm text-text-secondary"><ClipboardList className="w-4 h-4 text-white" /> Grocery List</div>
-           </div>
+      </div>
+
+      {/* Mobile Carousel View (< lg) */}
+      <div className="lg:hidden relative px-4 mb-12">
+        <button 
+          onClick={prev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <DietPlanCard plan={plans[currentIndex]} index={currentIndex} />
+          </motion.div>
+        </AnimatePresence>
+
+        <button 
+          onClick={next}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-card/80 backdrop-blur-sm hover:bg-accent hover:text-black transition-all"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {plans.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-1.5 transition-all rounded-full ${currentIndex === i ? 'w-6 bg-accent' : 'w-2 bg-white/20'}`}
+            />
+          ))}
         </div>
       </div>
 
-      <div className="bg-card border border-white/5 rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-8 mt-12">
+      <div className="flex justify-center mb-16">
+        <Link 
+          href="/diet-plans"
+          className="flex items-center gap-3 border border-white/10 text-white px-8 py-4 font-bold tracking-wider hover:bg-white/5 transition-colors rounded-sm text-sm uppercase"
+        >
+          <ClipboardList className="w-4 h-4 text-accent" /> VIEW ALL DIET PLANS <ArrowRight className="w-4 h-4 text-accent" />
+        </Link>
+      </div>
+
+      <div className="bg-card border border-white/5 rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-8">
         <div className="flex items-center gap-6 text-center lg:text-left">
           <div className="w-16 h-16 rounded-full border-2 border-accent overflow-hidden relative shrink-0">
              <Image src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" alt="Coach" fill className="object-cover" />
@@ -182,5 +185,46 @@ export default function DietPlans() {
         </button>
       </div>
     </section>
+  );
+}
+
+export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: number }) {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className={`bg-card rounded-2xl border ${plan.popular ? 'border-accent' : 'border-white/5'} p-6 flex flex-col relative z-10 h-full`}
+    >
+      {plan.popular && (
+        <div className="absolute -top-3 right-6 bg-accent text-black text-[10px] font-bold tracking-widest px-3 py-1 rounded-sm uppercase">
+          POPULAR
+        </div>
+      )}
+      
+      <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-background mb-6 shadow-2xl mx-auto max-w-[200px]">
+        <Image src={plan.image} alt={plan.title} fill className="object-cover" />
+        <div className="absolute top-2 left-2 w-8 h-8 rounded-full border border-accent bg-card/80 backdrop-blur-sm flex items-center justify-center">
+          <plan.icon className="w-4 h-4 text-accent" />
+        </div>
+      </div>
+
+      <h3 className="font-heading text-3xl font-bold tracking-wide mt-2">{plan.title}</h3>
+      <p className="text-accent text-sm font-medium mb-6">{plan.subtitle}</p>
+
+      <ul className="space-y-4 mb-8 flex-1">
+        {plan.features.map((feature, idx) => (
+          <li key={idx} className="flex items-start gap-3 text-sm text-text-secondary">
+            <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+
+      <button className={`w-full py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm flex items-center justify-center gap-2 ${plan.popular ? 'bg-accent text-black hover:bg-accent-hover' : 'border border-accent text-accent hover:bg-accent/10'}`}>
+        VIEW PLAN <ArrowRight className="w-4 h-4" />
+      </button>
+    </motion.div>
   );
 }
