@@ -5,6 +5,7 @@ import { ArrowRight, Menu, Users, Dumbbell, Star, ChevronDown, X } from "lucide-
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import JoinModal from "./JoinModal";
+import { getWhatsAppUrl } from "@/lib/utils";
 
 export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -135,10 +136,12 @@ export default function Hero() {
               START YOUR JOURNEY <ArrowRight className="w-4 h-4" />
             </button>
             <a 
-              href="#pricing"
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 border border-accent text-white px-8 py-4 font-bold hover:bg-accent/10 transition-colors rounded-sm text-sm"
             >
-              VIEW MEMBERSHIPS <ArrowRight className="w-4 h-4 text-accent" />
+              BOOK VIA WHATSAPP <ArrowRight className="w-4 h-4 text-accent" />
             </a>
           </div>
         </motion.div>

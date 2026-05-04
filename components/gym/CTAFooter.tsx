@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, Calendar, CheckCircle, PauseCircle, Users, Quote, Dumbbell, Star, MapPin, Phone, Mail } from "lucide-react";
 import { useState } from "react";
 import JoinModal from "./JoinModal";
+import { getWhatsAppUrl } from "@/lib/utils";
 
 export default function CTAFooter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,12 +55,14 @@ export default function CTAFooter() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={() => setIsModalOpen(true)}
+              <a 
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-accent text-black px-8 py-4 font-bold hover:bg-accent-hover transition-colors rounded-sm text-sm uppercase"
               >
-                JOIN NOW <ArrowRight className="w-4 h-4" />
-              </button>
+                BOOK VIA WHATSAPP <ArrowRight className="w-4 h-4" />
+              </a>
               <button 
                 onClick={() => setIsModalOpen(true)}
                 className="flex items-center justify-center gap-2 border border-accent text-accent px-8 py-4 font-bold hover:bg-accent/10 transition-colors rounded-sm text-sm uppercase"
@@ -184,7 +187,7 @@ export default function CTAFooter() {
               <ul className="space-y-4 text-sm text-text-secondary">
                 <li className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-accent shrink-0" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>0333 3940413</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-accent shrink-0" />

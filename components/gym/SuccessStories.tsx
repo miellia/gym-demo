@@ -13,7 +13,7 @@ const STORIES = [
     initials: "MC",
     stats: { strength: "+40%", weight: "-25kg", energy: "100%" },
     beforeImg: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=1469&auto=format&fit=crop",
-    afterImg: "https://images.unsplash.com/photo-1583454110551-21f2fa2adfcd?q=80&w=1470&auto=format&fit=crop"
+    afterImg: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop"
   },
   {
     name: "Sarah Jenkins",

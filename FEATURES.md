@@ -59,7 +59,18 @@ This document provides a deep dive into the features built into the FuelFit plat
 
 ---
 
-## 5. Roadmap (Future Features)
+## 5. Backend & Lead Management
+
+### **Tri-Sync Redundancy System**
+- **Functionality**: Every lead is simultaneously sent to three destinations:
+  1. **Supabase DB**: Permanent, secure PostgreSQL storage for long-term records.
+  2. **Resend Email**: Instant admin notifications delivered to the owner's inbox.
+  3. **Google Sheets**: A live, auto-updating spreadsheet for easy staff access and outreach.
+- **WhatsApp Direct**: "Book via WhatsApp" CTAs with pre-filled messaging for zero-friction conversion.
+
+---
+
+## 6. Roadmap (Future Features)
 - [ ] **Live Booking System**: Direct integration with Mindbody or Zen Planner.
 - [ ] **E-commerce Store**: Sell supplements and gym gear directly on-site.
 - [ ] **Member Progress Tracker**: Private login area for members to track their macro/BMI history.

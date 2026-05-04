@@ -38,9 +38,10 @@
 ---
 
 ## ⏳ Next Steps (Post-Launch)
-- [ ] **CRM Integration**: Connect lead forms to Resend/Formspree or a real database (MongoDB/Supabase).
-- [ ] **Live Scheduling**: Connect the "Schedule" view to a real-time calendar API.
-- [ ] **Member Portal**: Build a dashboard for logged-in members to track their progress.
+- [x] **Backend Integration**: Supabase DB + Next.js API Routes.
+- [x] **Admin Notifications**: Automated email alerts via Resend.
+- [x] **WhatsApp Book Now**: Direct pre-filled messaging integration.
+- [x] **Google Sheets Sync**: "Tri-Sync" lead logging for owner accessibility.
 
 ---
 

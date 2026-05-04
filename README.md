@@ -33,11 +33,20 @@ Optimized for local SEO and logistical clarity.
 - **Dynamic Hours**: Real-time "Open Now" status.
 - **SEO Ready**: Enhanced metadata and OpenGraph tags for maximum search visibility.
 
+### 6. **Full Backend Integration (MVP)**
+The platform is now fully functional with a robust backend for lead management.
+- **Form → API → DB**: All join requests are securely stored in a **Supabase** (PostgreSQL) database.
+- **WhatsApp "Book Now"**: Instant, pre-filled WhatsApp messaging links for immediate conversion.
+- **Admin Notifications**: Gym owners receive instant email alerts via **Resend** whenever a new lead is captured.
+- **Google Sheets Integration**: Leads are automatically appended to a **Google Sheet** for easy, non-technical record keeping.
+
 ---
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
+- **Database**: [Supabase](https://supabase.com/)
+- **Email**: [Resend](https://resend.com/)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
@@ -64,7 +73,13 @@ Optimized for local SEO and logistical clarity.
    npm install
    ```
 
-3. **Run the development server**:
+3. **Setup Environment Variables**:
+   Copy `.env.example` to `.env.local` and fill in your Supabase and Resend keys.
+
+4. **Setup Database**:
+   Run the SQL provided in `setup.sql` in your Supabase SQL Editor.
+
+5. **Run the development server**:
    ```bash
    npm run dev
    ```

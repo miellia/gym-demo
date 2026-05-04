@@ -1,19 +1,47 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle2, Dumbbell, Mail, Phone, User } from "lucide-react";
+import { X, CheckCircle2, Dumbbell, Mail, Phone, User, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-export default function JoinModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function JoinModal({ isOpen, onClose }: { isOpen, onClose: () => void }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    plan: ""
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      onClose();
-    }, 3000);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          onClose();
+          setFormData({ name: "", email: "", phone: "", plan: "" });
+        }, 3000);
+      } else {
+        console.error('Failed to submit');
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -75,6 +103,8 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean; onClos
                           required 
                           type="text" 
                           placeholder="John Doe" 
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full bg-background border border-white/10 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-accent transition-colors"
                         />
                       </div>
@@ -89,6 +119,8 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean; onClos
                             required 
                             type="email" 
                             placeholder="john@example.com" 
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             className="w-full bg-background border border-white/10 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-accent transition-colors"
                           />
                         </div>
@@ -101,6 +133,8 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean; onClos
                             required 
                             type="tel" 
                             placeholder="+1 (555) 000-0000" 
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="w-full bg-background border border-white/10 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-accent transition-colors"
                           />
                         </div>
@@ -109,7 +143,11 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean; onClos
 
                     <div className="space-y-2">
                       <label className="text-xs font-bold tracking-widest uppercase text-text-secondary">Select Plan (Optional)</label>
-                      <select className="w-full bg-background border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-accent transition-colors appearance-none">
+                      <select 
+                        value={formData.plan}
+                        onChange={(e) => setFormData({ ...formData, plan: e.target.value })}
+                        className="w-full bg-background border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-accent transition-colors appearance-none"
+                      >
                         <option value="">I&apos;m not sure yet</option>
                         <option value="basic">Basic Plan ($99/mo)</option>
                         <option value="pro">Pro Plan ($199/mo)</option>
@@ -117,8 +155,16 @@ export default function JoinModal({ isOpen, onClose }: { isOpen: boolean; onClos
                       </select>
                     </div>
 
-                    <button type="submit" className="w-full bg-accent text-black font-bold tracking-widest uppercase py-4 rounded-lg mt-4 hover:bg-accent-hover transition-colors flex items-center justify-center gap-2">
-                      Submit Request <CheckCircle2 className="w-5 h-5" />
+                    <button 
+                      disabled={isLoading}
+                      type="submit" 
+                      className="w-full bg-accent text-black font-bold tracking-widest uppercase py-4 rounded-lg mt-4 hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isLoading ? (
+                        <>Processing... <Loader2 className="w-5 h-5 animate-spin" /></>
+                      ) : (
+                        <>Submit Request <CheckCircle2 className="w-5 h-5" /></>
+                      )}
                     </button>
                   </form>
                 </>
