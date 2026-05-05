@@ -9,16 +9,16 @@ import { getWhatsAppUrl } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const HERO_IMAGES = [
-  "/image/hero/one.jpg",
-  "/image/hero/two.jpg",
-  "/image/hero/three.jpg",
-  "/image/hero/four.jpg",
-  "/image/hero/five.jpg",
-  "/image/hero/six.jpg",
-  "/image/hero/seven.jpg",
-  "/image/hero/eight.jpg",
-  "/image/hero/nine.jpg",
-  "/image/hero/ten.jpg",
+  "/image/hero/one.webp",
+  "/image/hero/two.webp",
+  "/image/hero/three.webp",
+  "/image/hero/four.webp",
+  "/image/hero/five.webp",
+  "/image/hero/six.webp",
+  "/image/hero/seven.webp",
+  "/image/hero/eight.webp",
+  "/image/hero/nine.webp",
+  "/image/hero/ten.webp",
 ];
 
 export default function Hero() {
@@ -88,7 +88,9 @@ export default function Hero() {
               alt={`Gym background ${currentImageIndex + 1}`}
               fill
               className="object-cover"
-              priority
+              priority={currentImageIndex === 0}
+              sizes="100vw"
+              quality={90}
             />
             {/* Overlay gradients for better text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/60 z-10" />

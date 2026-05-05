@@ -139,7 +139,14 @@ export default function DietPlans() {
       <div className="glass border border-card-border rounded-2xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-sm">
         <div className="flex items-center gap-6 text-center lg:text-left">
           <div className="w-16 h-16 rounded-full border-2 border-accent overflow-hidden relative shrink-0 shadow-md">
-             <Image src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" alt="Coach" fill className="object-cover" />
+             <Image 
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" 
+              alt="Coach" 
+              fill 
+              className="object-cover" 
+              sizes="64px"
+              quality={80}
+            />
           </div>
           <div>
             <h3 className="font-heading text-2xl font-bold uppercase tracking-widest text-accent mb-2">NEED A CUSTOM PLAN?</h3>
@@ -167,7 +174,14 @@ export function DietPlanCard({ plan, index }: { plan: typeof plans[0], index: nu
       )}
       
       <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-white mb-6 shadow-xl mx-auto max-w-[180px]">
-        <Image src={plan.image} alt={plan.title} fill className="object-cover" />
+        <Image 
+          src={plan.image} 
+          alt={plan.title} 
+          fill 
+          className="object-cover" 
+          sizes="(max-width: 640px) 180px, 180px"
+          quality={80}
+        />
         <div className="absolute top-2 left-2 w-8 h-8 rounded-full border border-accent bg-white/60 backdrop-blur-sm flex items-center justify-center">
           <plan.icon className="w-4 h-4 text-accent" />
         </div>

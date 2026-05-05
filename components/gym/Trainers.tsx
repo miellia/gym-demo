@@ -123,6 +123,8 @@ export function TrainerCard({ trainer, index }: { trainer: typeof trainers[0], i
           alt={trainer.name}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          quality={80}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         <div className="absolute top-4 right-4 bg-accent p-2 rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm text-black z-20 shadow-md">

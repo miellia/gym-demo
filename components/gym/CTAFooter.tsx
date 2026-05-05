@@ -80,6 +80,8 @@ export default function CTAFooter() {
                 alt="Gym member"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={85}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             </div>

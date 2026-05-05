@@ -58,12 +58,26 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
         onTouchMove={handleMove}
         className="hidden md:block relative aspect-[4/5] w-full rounded-3xl overflow-hidden cursor-ew-resize group shadow-2xl"
       >
-        <Image src={after} alt="After" fill className="object-cover" />
+        <Image 
+          src={after} 
+          alt="After" 
+          fill 
+          className="object-cover" 
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 45vw"
+          quality={85}
+        />
         <div 
           className="absolute inset-0 z-10"
           style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
         >
-          <Image src={before} alt="Before" fill className="object-cover grayscale" />
+          <Image 
+            src={before} 
+            alt="Before" 
+            fill 
+            className="object-cover grayscale" 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 45vw"
+            quality={85}
+          />
         </div>
         
         <div 
@@ -104,6 +118,8 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
               alt={showAfter ? "After" : "Before"} 
               fill 
               className={`object-cover ${!showAfter ? 'grayscale' : ''}`} 
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 45vw"
+              quality={85}
             />
           </motion.div>
         </AnimatePresence>
