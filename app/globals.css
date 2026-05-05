@@ -27,6 +27,7 @@
   --glass-bg: rgba(255, 255, 255, 0.4);
   --glass-border: var(--card-border);
   --glass-shadow: rgba(31, 38, 135, 0.07);
+  --accent-rgb: 0, 255, 136;
 }
 
 .dark {
@@ -38,6 +39,7 @@
   --glass-bg: rgba(15, 23, 42, 0.6);
   --glass-border: var(--card-border);
   --glass-shadow: rgba(0, 0, 0, 0.4);
+  --accent-rgb: 0, 255, 136;
 }
 
 @layer utilities {

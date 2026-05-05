@@ -8,6 +8,15 @@ import Section from "@/components/ui/Section";
 
 const STORIES = [
   {
+    name: "John",
+    role: "Body Transformation",
+    quote: "The results speak for themselves. The systematic approach to training and nutrition completely changed my life.",
+    initials: "J",
+    stats: { strength: "+85%", weight: "-15kg", muscle: "+8kg" },
+    beforeImg: "/image/transformation/john-before.jpg",
+    afterImg: "/image/transformation/john-after.jpg"
+  },
+  {
     name: "Michael Chen",
     role: "Lost 25kg in 6 Months",
     quote: "FuelFit didn't just give me a workout plan; they gave me a new lifestyle. The trainers kept me accountable when I wanted to quit.",
